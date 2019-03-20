@@ -25,6 +25,7 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
+import com.lidroid.xutils.view.annotation.event.OnFocusChange;
 import com.ybbbi.safe.utils.packageUtil;
 
 public class SplashActivity extends Activity {
@@ -238,4 +239,6 @@ public class SplashActivity extends Activity {
 		
 		
 	}
+	
+	
 }
