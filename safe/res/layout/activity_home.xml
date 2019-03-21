@@ -7,18 +7,22 @@
 	<RelativeLayout 
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:background="@drawable/blue_bkg">
+	    android:background="@drawable/home_title">
 	    <ImageView 
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_alignParentRight="true"
 	        android:src="@drawable/setting"
+	        android:background="@drawable/home_shape_selector"
+	        android:scaleType="center"
+	        android:clickable="true"
+	        android:onClick="Setting_Activity"
 	        />
 	    
 	    <ImageView
 	        android:layout_width="100dp"
 	        android:layout_height="140dp"
-	        android:src="@drawable/ic_launcher"
+	        android:src="@drawable/logo"
 	        android:layout_centerVertical="true"
 	        android:layout_marginLeft="14dp"
 	        android:id="@+id/Image_logo"
@@ -35,9 +39,11 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="安全手机助手"
-	            android:textSize="20sp"
-	            android:textStyle="bold"
 	            android:textColor="#000000"
+	            
+	            android:textSize="30sp"
+	            android:textStyle="bold"
+
 	            
 	            />
 	        <com.ybbbi.safe.view.Home_TextView 
@@ -59,10 +65,14 @@
 	    
 	    </RelativeLayout>
     <GridView 
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:numColumns="2"
         android:id="@+id/home_GV_gridview"
+        android:horizontalSpacing="2dp"
+        android:verticalSpacing="20dp"
+        
         ></GridView>
 
 </LinearLayout>
