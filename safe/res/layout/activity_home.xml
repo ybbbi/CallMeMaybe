@@ -64,15 +64,32 @@
 	    
 	    
 	    </RelativeLayout>
+        <!--GridView android:layout_height="wrap_content"此处设置为填充父窗体(match_parent)会将其他布局地方站用掉,导致其他布局文件中的控件在设置时遇到空指针异常,找不到对象 -->
     <GridView 
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:numColumns="2"
         android:id="@+id/home_GV_gridview"
         android:horizontalSpacing="2dp"
         android:verticalSpacing="20dp"
         
         ></GridView>
+<RelativeLayout 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    
+    >
+    
+    <ImageView 
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/school_background"
+    
+        />
+</RelativeLayout>
+  
+  
 
 </LinearLayout>

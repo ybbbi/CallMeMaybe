@@ -2,11 +2,15 @@ package com.ybbbi.safe;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -23,6 +27,7 @@ public class HomeActivity extends Activity {
 			R.drawable.rjgj, R.drawable.jcgl, R.drawable.lltj, R.drawable.sjsd,
 			R.drawable.hcql, R.drawable.cygj };
 	private GridView home_GV_gridview;
+	private AlertDialog.Builder builder;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +39,60 @@ public class HomeActivity extends Activity {
 		image_logo = (ImageView) findViewById(R.id.Image_logo);
 		animationStart();
 		home_GV_gridview = (GridView) findViewById(R.id.home_GV_gridview);
-		MyBaseAdapter mybaseadapter=new MyBaseAdapter();
+		MyBaseAdapter mybaseadapter = new MyBaseAdapter();
 		home_GV_gridview.setAdapter(mybaseadapter);
+		home_GV_gridview.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			// position 代表那个被点击的gridview
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				switch (position) {
+				case 0:
+					showPwDialog();
+
+					break;
+				case 1:
+
+					break;
+				case 2:
+
+					break;
+				case 3:
+
+					break;
+				case 4:
+
+					break;
+				case 5:
+
+					break;
+				case 6:
+
+					break;
+				case 7:
+
+					break;
+
+				}
+			}
+
+		});
+	}
+
+	
+
+	private void showPwDialog() {
+		builder = new Builder(this);
+
+		View view = View.inflate(getApplicationContext(),
+				R.layout.home_password_dialog, null);
+		builder.setView(view);
+		builder.show();
 
 	}
-	private class MyBaseAdapter extends BaseAdapter{
+
+	private class MyBaseAdapter extends BaseAdapter {
 
 		@Override
 		public int getCount() {
@@ -61,25 +115,31 @@ public class HomeActivity extends Activity {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
-			
-			View view=View.inflate(getApplicationContext(),R.layout.gridview_home, null);
 
-			ImageView gridview_imageview = (ImageView) view.findViewById(R.id.gridview_imageview);
-			TextView textview_title = (TextView) view.findViewById(R.id.Textview_title);
-			TextView textview_info = (TextView) view.findViewById(R.id.Textview_info);
-			
+			View view = View.inflate(getApplicationContext(),
+					R.layout.gridview_home, null);
+
+			ImageView gridview_imageview = (ImageView) view
+					.findViewById(R.id.gridview_imageview);
+			TextView textview_title = (TextView) view
+					.findViewById(R.id.Textview_title);
+			TextView textview_info = (TextView) view
+					.findViewById(R.id.Textview_info);
+
 			gridview_imageview.setImageResource(Icon[position]);
 			textview_title.setText(Title[position]);
 			textview_info.setText(Info[position]);
-			
+
 			return view;
 		}
-		
+
 	}
-	public void Setting_Activity(View v){
-		Intent intent=new Intent(this,Setting_Activity.class);
+
+	public void Setting_Activity(View v) {
+		Intent intent = new Intent(this, Setting_Activity.class);
 		startActivity(intent);
 	}
+
 	private void animationStart() {
 		ObjectAnimator objectanimator = ObjectAnimator.ofFloat(image_logo,
 				"rotationY", 0f, 180f, 360f);

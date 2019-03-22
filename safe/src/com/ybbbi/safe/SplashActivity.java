@@ -9,9 +9,13 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -25,13 +29,14 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
-import com.lidroid.xutils.view.annotation.event.OnFocusChange;
+import com.ybbbi.safe.utils.Sharedpreferences;
+import com.ybbbi.safe.utils.constants;
 import com.ybbbi.safe.utils.packageUtil;
 
 public class SplashActivity extends Activity {
 
 	protected static final String TAG = null;
-	private TextView tv_version;
+	
 	private String CONNECTURL = "http://10.0.2.2:8080/update.json";// 手机模拟端默认为10.0.2.2
 	private int code;
 	private String apkUrlString;
@@ -39,6 +44,8 @@ public class SplashActivity extends Activity {
 	private String url = "http://10.0.2.2:8080/safe.apk";
 	private String targetAPK = "mnt/sdcard/safe.apk";
 	private ProgressDialog progressdialog;
+
+	private TextView tv_version;
 
 	// 电脑端为127.0.1.1
 
@@ -51,15 +58,32 @@ public class SplashActivity extends Activity {
 
 	private void initView() {
 		tv_version = (TextView) findViewById(R.id.tv_version);
-
-		tv_version.setText("版本:" + packageUtil.getVersionName(this));
+		/*PackageManager pm = this.getPackageManager();
+		
+		try {
+			PackageInfo packageInfo = pm.getPackageInfo("com.ybbbi.safe", 0);
+			System.out.println(packageInfo.versionName+"失败");
+			tv_version.setText("版本:" + packageInfo.versionName);
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		tv_version.setText("版本:"+packageUtil.getVersionName(this));
+		
+		
+		
+		
 		//延时更新操作
 		new Handler(){
 			@Override
 			public void handleMessage(Message msg) {
-				
-				update();
-				super.handleMessage(msg);
+				boolean b = Sharedpreferences.getBoolean(getApplicationContext(), constants.isUpdate, true);
+				if(b){
+					update();
+				}else
+				{
+					Home();
+				}
 			}
 		}.sendEmptyMessageDelayed(0, 2000);
 		//update();
@@ -81,7 +105,7 @@ public class SplashActivity extends Activity {
 					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
 						String result = responseInfo.result;// 获取服务器返回数据
-						System.out.println(result);
+						
 						version_fromService(result);
 
 					}
