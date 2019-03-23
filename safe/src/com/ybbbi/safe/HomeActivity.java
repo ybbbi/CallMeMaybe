@@ -1,20 +1,28 @@
 package com.ybbbi.safe;
 
+import com.ybbbi.safe.utils.Sharedpreferences;
+import com.ybbbi.safe.utils.constants;
+
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
+
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class HomeActivity extends Activity {
 
@@ -27,7 +35,9 @@ public class HomeActivity extends Activity {
 			R.drawable.rjgj, R.drawable.jcgl, R.drawable.lltj, R.drawable.sjsd,
 			R.drawable.hcql, R.drawable.cygj };
 	private GridView home_GV_gridview;
-	private AlertDialog.Builder builder;
+
+	private AlertDialog alertDialog;
+	private AlertDialog alertDialog_Confirm;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,16 +51,27 @@ public class HomeActivity extends Activity {
 		home_GV_gridview = (GridView) findViewById(R.id.home_GV_gridview);
 		MyBaseAdapter mybaseadapter = new MyBaseAdapter();
 		home_GV_gridview.setAdapter(mybaseadapter);
+
 		home_GV_gridview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			// position 代表那个被点击的gridview
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				// TODO Auto-generated method stub
+
 				switch (position) {
 				case 0:
-					showPwDialog();
 
+					String pw = Sharedpreferences.getString(
+							getApplicationContext(), constants.isSettingPW, "");
+					if (pw == null || pw.length() == 0) {
+
+						showPwDialog();
+					} else {
+						// Toast.makeText(getApplicationContext(), "弹出验证对话框",
+						// 0).show();
+						showConfirm();
+					}
 					break;
 				case 1:
 
@@ -75,20 +96,111 @@ public class HomeActivity extends Activity {
 					break;
 
 				}
-			}
 
+			}
 		});
 	}
 
-	
+	private void showConfirm() {
+		// TODO Auto-generated method stub
+
+		AlertDialog.Builder builder = new Builder(this);
+		View view = View.inflate(getApplicationContext(),
+				R.layout.home_passwordconfirm_dialog, null);
+		builder.setView(view);
+		final TextView mPassword = (TextView) view
+				.findViewById(R.id.edittext_Home_passwordConfirm);
+
+		Button button_password_sure = (Button) view
+				.findViewById(R.id.button_passwordConfirm_sure);
+		Button button_password_cancel = (Button) view
+				.findViewById(R.id.button_passwordConfirm_cancel);
+
+		button_password_sure.setOnClickListener(new OnClickListener() {
+			// 匿名内部类访问成员变量需要加final修饰
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				String password = mPassword.getText().toString().trim();
+
+				if (password.length() == 0 || password == null) {
+					Toast.makeText(getApplicationContext(), "密码不能为空",
+							Toast.LENGTH_SHORT).show();
+					return;
+				}
+				String pwd = Sharedpreferences.getString(
+						getApplicationContext(), constants.isSettingPW, "");
+				if (password.equals(pwd)) {
+					Toast.makeText(getApplicationContext(), "验证成功",
+							Toast.LENGTH_SHORT).show();
+					alertDialog_Confirm.dismiss();
+
+				} else {
+					Toast.makeText(getApplicationContext(), "密码错误,请重新输入",
+							Toast.LENGTH_SHORT).show();
+				}
+
+			}
+		});
+
+		alertDialog_Confirm = builder.create();
+		alertDialog_Confirm.show();
+
+	}
 
 	private void showPwDialog() {
-		builder = new Builder(this);
-
+		AlertDialog.Builder builder = new Builder(this);
 		View view = View.inflate(getApplicationContext(),
 				R.layout.home_password_dialog, null);
+
+		final TextView mPassword = (TextView) view
+				.findViewById(R.id.edittext_Home_password);
+		final TextView mRepassword = (TextView) view
+				.findViewById(R.id.edittext_Home_repassword);
+
+		Button button_password_sure = (Button) view
+				.findViewById(R.id.button_password_sure);
+		Button button_password_cancel = (Button) view
+				.findViewById(R.id.button_password_cancel);
+		// 这里如果使用findviewbyid会报空指针异常,在oncreate方法的布局文件中找,当然找不到
+
+		button_password_sure.setOnClickListener(new OnClickListener() {
+			// 匿名内部类访问成员变量需要加final修饰
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				String password = mPassword.getText().toString().trim();
+				String repassword = mRepassword.getText().toString().trim();
+				if (password.length() == 0 || password == null) {
+					Toast.makeText(getApplicationContext(), "密码不能为空",
+							Toast.LENGTH_SHORT).show();
+					return;
+				} else if (repassword.equals(password)) {
+					Toast.makeText(getApplicationContext(), "设置成功",
+							Toast.LENGTH_SHORT).show();
+					alertDialog.dismiss();
+					Sharedpreferences.saveString(getApplicationContext(),
+							constants.isSettingPW, repassword);
+
+				} else {
+					Toast.makeText(getApplicationContext(), "密码设置不一致,请重新输入",
+							Toast.LENGTH_SHORT).show();
+				}
+
+			}
+		});
+
+		button_password_cancel.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				alertDialog.dismiss();
+			}
+		});
+
 		builder.setView(view);
-		builder.show();
+		alertDialog = builder.create();
+		alertDialog.show();
 
 	}
 
@@ -96,7 +208,7 @@ public class HomeActivity extends Activity {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
+
 			return Icon.length;
 		}
 
