@@ -1,5 +1,6 @@
 package com.ybbbi.safe;
 
+import com.ybbbi.safe.utils.MD5utils;
 import com.ybbbi.safe.utils.Sharedpreferences;
 import com.ybbbi.safe.utils.constants;
 
@@ -57,7 +58,6 @@ public class HomeActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
 
 				switch (position) {
 				case 0:
@@ -102,7 +102,6 @@ public class HomeActivity extends Activity {
 	}
 
 	private void showConfirm() {
-		// TODO Auto-generated method stub
 
 		AlertDialog.Builder builder = new Builder(this);
 		View view = View.inflate(getApplicationContext(),
@@ -115,12 +114,17 @@ public class HomeActivity extends Activity {
 				.findViewById(R.id.button_passwordConfirm_sure);
 		Button button_password_cancel = (Button) view
 				.findViewById(R.id.button_passwordConfirm_cancel);
-
+		button_password_cancel.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				alertDialog_Confirm.dismiss();
+			}
+		});
 		button_password_sure.setOnClickListener(new OnClickListener() {
 			// 匿名内部类访问成员变量需要加final修饰
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				String password = mPassword.getText().toString().trim();
 
 				if (password.length() == 0 || password == null) {
@@ -130,10 +134,11 @@ public class HomeActivity extends Activity {
 				}
 				String pwd = Sharedpreferences.getString(
 						getApplicationContext(), constants.isSettingPW, "");
-				if (password.equals(pwd)) {
+				if (MD5utils.toMD5(password).equals(pwd)) {
 					Toast.makeText(getApplicationContext(), "验证成功",
 							Toast.LENGTH_SHORT).show();
 					alertDialog_Confirm.dismiss();
+					enterSetFirstActivity();
 
 				} else {
 					Toast.makeText(getApplicationContext(), "密码错误,请重新输入",
@@ -168,7 +173,6 @@ public class HomeActivity extends Activity {
 			// 匿名内部类访问成员变量需要加final修饰
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				String password = mPassword.getText().toString().trim();
 				String repassword = mRepassword.getText().toString().trim();
 				if (password.length() == 0 || password == null) {
@@ -179,8 +183,11 @@ public class HomeActivity extends Activity {
 					Toast.makeText(getApplicationContext(), "设置成功",
 							Toast.LENGTH_SHORT).show();
 					alertDialog.dismiss();
+					//将密码保存到sharedpreferences
 					Sharedpreferences.saveString(getApplicationContext(),
-							constants.isSettingPW, repassword);
+							constants.isSettingPW, MD5utils.toMD5(password));
+					enterSetFirstActivity();
+					
 
 				} else {
 					Toast.makeText(getApplicationContext(), "密码设置不一致,请重新输入",
@@ -188,8 +195,9 @@ public class HomeActivity extends Activity {
 				}
 
 			}
-		});
 
+		});
+		
 		button_password_cancel.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -203,6 +211,11 @@ public class HomeActivity extends Activity {
 		alertDialog.show();
 
 	}
+	private void enterSetFirstActivity() {
+		//TODO
+		Intent intent=new Intent(this,SetFirstActivity.class);
+		startActivity(intent);
+	}
 
 	private class MyBaseAdapter extends BaseAdapter {
 
@@ -214,19 +227,16 @@ public class HomeActivity extends Activity {
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
 
 			View view = View.inflate(getApplicationContext(),
 					R.layout.gridview_home, null);

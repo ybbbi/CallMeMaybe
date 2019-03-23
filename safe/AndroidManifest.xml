@@ -33,6 +33,10 @@
             android:name="com.ybbbi.safe.Setting_Activity"
             android:label="@string/title_activity_setting_" >
         </activity>
+        <activity
+            android:name="com.ybbbi.safe.SetFirstActivity"
+            android:label="@string/title_activity_set_first" >
+        </activity>
     </application>
 
 </manifest>
