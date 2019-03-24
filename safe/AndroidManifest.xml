@@ -7,10 +7,11 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="19" />
-
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <uses-permission  android:name="android.permission.SEND_SMS"/>
+<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo2"
@@ -37,6 +38,39 @@
             android:name="com.ybbbi.safe.SetFirstActivity"
             android:label="@string/title_activity_set_first" >
         </activity>
+        <activity
+            android:name="com.ybbbi.safe.SetSencondActivity"
+            android:label="@string/title_activity_set_sencond" >
+        </activity>
+        <activity
+            android:name="com.ybbbi.safe.SetThirdActivity"
+            android:label="@string/title_activity_set_third" >
+        </activity>
+        <activity
+            android:name="com.ybbbi.safe.SetFourthActivity"
+            android:label="@string/title_activity_set_fourth" >
+        </activity>
+        <activity
+            android:name="com.ybbbi.safe.SetFifthActivity"
+            android:label="@string/title_activity_set_fifth" >
+        </activity>
+        <activity
+            android:name="com.ybbbi.safe.FindActivity"
+            android:label="@string/title_activity_find" >
+        </activity>
+        <receiver 
+            android:name="com.ybbbi.safe.broad.BOOT_COMPLETED_broad"
+            
+            >
+            
+            <intent-filter 
+                android:priority="1000"
+                >
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                
+            </intent-filter>
+            
+        </receiver>
     </application>
 
 </manifest>

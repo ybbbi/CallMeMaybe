@@ -138,7 +138,8 @@ public class HomeActivity extends Activity {
 					Toast.makeText(getApplicationContext(), "验证成功",
 							Toast.LENGTH_SHORT).show();
 					alertDialog_Confirm.dismiss();
-					enterSetFirstActivity();
+					
+					enterSetActivity();
 
 				} else {
 					Toast.makeText(getApplicationContext(), "密码错误,请重新输入",
@@ -186,7 +187,7 @@ public class HomeActivity extends Activity {
 					//将密码保存到sharedpreferences
 					Sharedpreferences.saveString(getApplicationContext(),
 							constants.isSettingPW, MD5utils.toMD5(password));
-					enterSetFirstActivity();
+					enterSetActivity();
 					
 
 				} else {
@@ -211,10 +212,18 @@ public class HomeActivity extends Activity {
 		alertDialog.show();
 
 	}
-	private void enterSetFirstActivity() {
-		//TODO
-		Intent intent=new Intent(this,SetFirstActivity.class);
-		startActivity(intent);
+	private void enterSetActivity() {
+		boolean b = Sharedpreferences.getBoolean(getApplicationContext(), constants.isInit, false);
+		if(b){
+			Intent intent=new Intent(this,FindActivity.class);
+			startActivity(intent);
+			overridePendingTransition(R.anim.anim_enter_next_activity, R.anim.anim_exit_next_activty);
+		}else{
+			
+			Intent intent=new Intent(this,SetFirstActivity.class);
+			startActivity(intent);
+			overridePendingTransition(R.anim.anim_enter_next_activity, R.anim.anim_exit_next_activty);
+		}
 	}
 
 	private class MyBaseAdapter extends BaseAdapter {
