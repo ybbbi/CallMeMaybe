@@ -12,5 +12,6 @@
     <string name="title_activity_set_fourth">SetFourthActivity</string>
     <string name="title_activity_set_fifth">SetFifthActivity</string>
     <string name="title_activity_find">FindActivity</string>
+    <string name="title_activity_contact_3rd_">Contact_3rd_Activity</string>
 
 </resources>
