@@ -7,7 +7,10 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="19" />
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
+	<uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -66,6 +69,19 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        <receiver 
+            android:name="com.ybbbi.safe.broad.smsReceiver"
+            >
+            <intent-filter 
+                android:priority="1000"
+                >
+               <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+            
+        </receiver>
+        <service android:name="com.ybbbi.safe.service.GPSservice">
+            
+        </service>
 
         <activity
             android:name="com.ybbbi.safe.Contact_3rd_Activity"
