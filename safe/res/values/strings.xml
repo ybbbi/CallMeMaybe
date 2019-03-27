@@ -13,5 +13,7 @@
     <string name="title_activity_set_fifth">SetFifthActivity</string>
     <string name="title_activity_find">FindActivity</string>
     <string name="title_activity_contact_3rd_">Contact_3rd_Activity</string>
+    <string name="sample_device_admin">admin</string>
+    <string name="sample_device_admin_description">hello,welcome to use</string>
 
 </resources>
