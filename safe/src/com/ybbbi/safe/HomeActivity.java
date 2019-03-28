@@ -74,7 +74,11 @@ public class HomeActivity extends Activity {
 					}
 					break;
 				case 1:
-
+					Intent intent=new Intent(HomeActivity.this,BlackListActivity.class);
+					startActivity(intent);
+					
+					
+					
 					break;
 				case 2:
 

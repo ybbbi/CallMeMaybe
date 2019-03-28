@@ -97,6 +97,18 @@
             android:name="com.ybbbi.safe.Contact_3rd_Activity"
             android:label="@string/title_activity_contact_3rd_" >
         </activity>
+        <activity
+            android:name="com.ybbbi.safe.BlackListActivity"
+            android:label="@string/title_activity_black_list" >
+        </activity>
+        <activity
+            android:name="com.ybbbi.safe.Add_blacklist_Activity"
+            android:label="@string/title_activity_add_blacklist_" >
+        </activity>
+        <activity
+            android:name="com.ybbbi.safe.Update_blacklist_Activity"
+            android:label="@string/title_activity_update_blacklist_" >
+        </activity>
     </application>
 
 </manifest>
