@@ -1,0 +1,86 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".BlackListActivity" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:padding="10dp"
+           android:background="#4400FF00"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+            android:text="黑名单"
+           android:textSize="30sp"
+            android:gravity="center" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:onClick="addBlacklist"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="5dp"
+            android:clickable="true"
+            android:src="@drawable/selector_blacklist_add_setting" />
+    </FrameLayout>
+    <FrameLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        
+        
+        >
+        
+        <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+        	 android:src="@drawable/blacklist"
+            android:id="@+id/imageview_blacklist"
+            />
+        
+        
+        
+        <ListView 
+            
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listview_blacklist"
+            ></ListView>
+        
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:id="@+id/linearlayout_blacklist_loading"
+            >
+        
+        <ProgressBar 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateDrawable="@drawable/progressbar"
+            
+            
+            />
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="加载中"
+            />
+        
+        
+        </LinearLayout>
+        
+        
+        
+    </FrameLayout>
+    
+    
+    
+
+</LinearLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" 
+    android:background="@drawable/gridview_home_selector">
+    <ImageView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sjfd"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/gridview_imageview"
+        
+        />
+    <RelativeLayout 
+        android:layout_marginLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        >
+        
+        <TextView
+            android:paddingTop="4dp"
+            android:id="@+id/Textview_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="远程定位"
+            android:textColor="#000000"
+            />
+        <TextView
+            android:layout_marginTop="4dp"
+            android:id="@+id/Textview_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Textview_title"
+            android:text="定位手机位置"
+            android:textColor="#55000000"
+            />
+        
+        
+    </RelativeLayout>
+
+</LinearLayout>

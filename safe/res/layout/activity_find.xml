@@ -1,0 +1,122 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FindActivity" >
+
+    <TextView
+        style="@style/APPTitleStyles"
+        android:text="手机防盗" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="绑定安全号码"
+            android:textSize="25sp"
+            />
+
+        <TextView
+            android:id="@+id/textview_find"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:text="3434"
+            android:textSize="25sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5sp"
+        android:background="#000000" />
+
+    <RelativeLayout
+        android:id="@+id/relative_find"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+         android:background="@drawable/selector_findactivity_reset_bkg">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="防盗是否开启"
+            android:textSize="25sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:id="@+id/imageview_find"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:src="@android:drawable/ic_partial_secure"
+            android:textSize="25sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5sp"
+        android:background="#000000" />
+
+    <TextView
+        android:id="@+id/find_textview_reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/selector_findactivity_reset_bkg"
+        android:paddingLeft="20dp"
+        android:text="重新进入设置向导"
+        android:textSize="25sp" 
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5sp"
+        android:background="#000000" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#44000000"
+        android:padding="20dp"
+        android:text="功能介绍"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+    <TextView
+        style="@style/set_title_content"
+        android:padding="10dp"
+        android:text="GPS:#*location*#" />
+
+    <TextView
+        style="@style/set_title_content"
+        android:padding="10dp"
+        android:text="远程销毁数据:#*wipedata*#" />
+
+    <TextView
+        android:padding="10dp"
+        style="@style/set_title_content"
+        android:text="播放报警音乐:#*alarm*#" />
+
+    <TextView
+        android:padding="10dp"
+        style="@style/set_title_content"
+        android:text="远程锁屏#*lockscreen*#" />
+
+</LinearLayout>

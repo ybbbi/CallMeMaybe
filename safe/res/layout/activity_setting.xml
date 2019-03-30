@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:personal="http://schemas.android.com/apk/res/com.ybbbi.safe"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Setting_Activity" >
+
+    <TextView
+        style="@style/APPTitleStyles"
+        android:layout_height="142dp"
+        android:text="设置中心" />
+
+    <com.ybbbi.safe.view.SettingView
+        
+        
+        android:background="@drawable/selector_setting_sv_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/setting_settingview_update"
+        android:clickable="true"
+        personal:Title="自动更新"
+        personal:cache="true"
+        >
+        
+    </com.ybbbi.safe.view.SettingView>
+     <com.ybbbi.safe.view.SettingView
+         
+         
+         android:background="@drawable/selector_setting_sv_bottom"
+       
+         
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        personal:Title="骚扰拦截"
+        personal:cache="true"
+        >
+        
+    </com.ybbbi.safe.view.SettingView>
+     <com.ybbbi.safe.view.SettingView
+         
+         android:background="@drawable/selector_setting_sv_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+                personal:Title="归属地显示"
+                personal:cache="true"
+        >
+        
+    </com.ybbbi.safe.view.SettingView>
+   
+    <com.ybbbi.safe.view.SettingView
+         android:background="@drawable/selector_setting_sv_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        personal:Title="归属地风格"
+        personal:cache="false"
+        >
+        
+    </com.ybbbi.safe.view.SettingView>
+
+</LinearLayout>
