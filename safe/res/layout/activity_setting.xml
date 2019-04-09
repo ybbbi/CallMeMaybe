@@ -28,7 +28,7 @@
          
          
          android:background="@drawable/selector_setting_sv_bottom"
-       
+       android:id="@+id/blacknum_shield"
          
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
