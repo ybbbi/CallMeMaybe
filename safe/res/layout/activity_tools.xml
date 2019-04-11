@@ -1,0 +1,82 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:personal="http://schemas.android.com/apk/res/com.ybbbi.safe"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Setting_Activity" >
+<TextView
+        style="@style/APPTitleStyles"
+        android:layout_height="142dp"
+        android:text="常用工具中心" />
+    <com.ybbbi.safe.view.SettingView
+        android:layout_marginTop="5dp"
+        android:id="@+id/Tools_settingview_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_setting_sv_top"
+        android:clickable="true"
+        personal:Title="号码归属查询"
+        personal:cache="false" >
+    </com.ybbbi.safe.view.SettingView>
+
+    <com.ybbbi.safe.view.SettingView
+        android:id="@+id/tools_shield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_setting_sv_bottom"
+        android:clickable="true"
+        personal:Title="常用号码查询"
+        personal:cache="false" >
+    </com.ybbbi.safe.view.SettingView>
+
+    <com.ybbbi.safe.view.SettingView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_setting_sv_top"
+        android:clickable="true"
+        personal:Title="短信备份"
+        personal:cache="false" >
+    </com.ybbbi.safe.view.SettingView>
+
+    <com.ybbbi.safe.view.SettingView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_setting_sv_bottom"
+        android:clickable="true"
+        personal:Title="短信还原"
+        personal:cache="false" >
+    </com.ybbbi.safe.view.SettingView>
+
+    <com.ybbbi.safe.view.SettingView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_setting_sv_top"
+        android:clickable="true"
+        personal:Title="程序锁管理"
+        personal:cache="false" >
+    </com.ybbbi.safe.view.SettingView>
+
+  
+
+    <com.ybbbi.safe.view.SettingView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_setting_sv_middle"
+        android:clickable="true"
+        personal:Title="开启电子狗服务1"
+        personal:cache="true" >
+    </com.ybbbi.safe.view.SettingView>
+
+    <com.ybbbi.safe.view.SettingView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_setting_sv_bottom"
+        android:clickable="true"
+        personal:Title="开启电子狗服务1"
+        personal:cache="true" >
+    </com.ybbbi.safe.view.SettingView>
+
+</LinearLayout>

@@ -96,7 +96,8 @@ public class HomeActivity extends Activity {
 
 					break;
 				case 7:
-
+					Intent intent7 =new Intent(HomeActivity.this,Tools_Activity.class);
+					startActivity(intent7);
 					break;
 
 				}

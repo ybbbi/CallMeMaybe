@@ -1,6 +1,9 @@
 package com.ybbbi.safe;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,13 +12,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -54,6 +54,50 @@ public class SplashActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
 		initView();
+		//copyDatabase("address.db");会进行耗时操作,开启子线程
+	
+				copyDatabase("address.db");
+				
+			
+	}
+	private void copyDatabase(String name) {
+		AssetManager assets = getAssets();
+		File file=new File(getFilesDir(),name);
+		if(!file.exists()){
+			
+			InputStream open = null;
+			FileOutputStream fos = null;
+			try {
+				open = assets.open(name);
+				fos = new FileOutputStream(file);
+				byte[] arr = new byte[1024];
+				int len = -1;
+				while ((len = open.read(arr)) != -1) {
+					fos.write(arr, 0, len);
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				if (open != null) {
+					try {
+						open.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				if (fos != null) {
+					try {
+						fos.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+			}
+		}
 	}
 
 	private void initView() {

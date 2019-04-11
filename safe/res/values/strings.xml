@@ -18,5 +18,7 @@
     <string name="title_activity_black_list">BlackListActivity</string>
     <string name="title_activity_add_blacklist_">Add_blacklist_Activity</string>
     <string name="title_activity_update_blacklist_">Update_blacklist_Activity</string>
+    <string name="title_activity_tools_">Tools_Activity</string>
+    <string name="title_activity_search_num_">SearchNum_Activity</string>
 
 </resources>

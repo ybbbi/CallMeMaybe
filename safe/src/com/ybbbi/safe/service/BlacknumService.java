@@ -8,9 +8,13 @@ import com.ybbbi.safe.database.dao.BlackListDAO;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.Handler;
 import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.SmsMessage;
@@ -76,21 +80,34 @@ listener = new myListener();
 			case TelephonyManager.CALL_STATE_RINGING://响铃状态
 				int mode = bd.query(incomingNumber);
 				if(mode==1||mode==2){
-					
+					//挂断电话
 					end();
+				
+					deletebd(incomingNumber);
+					//输出通话记录  ,数据库
+					
 				}
 				break;
 			}
 			super.onCallStateChanged(state, incomingNumber);
 		}
 
+
 		
 	}
+	private void deletebd(final String number) {
+		final ContentResolver con= getContentResolver();
+		final Uri url=Uri.parse("content://call_log/calls");
+		//当数据改变的时候  ,调用内容观察者的onchange方法删除数据库信息
+		con.registerContentObserver(url, true, new ContentObserver(new Handler()) {
+			public void onChange(boolean selfChange) {
+				
+				con.delete(url, "number=?", new String[]{number});
+				con.unregisterContentObserver(this);
+			};
+		});
+	}
 	private void end() {
-		
-		
-		
-		
 		try {
 			
 			
