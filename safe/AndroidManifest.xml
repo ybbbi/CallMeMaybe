@@ -7,7 +7,7 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="19" />
-
+	<uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
@@ -97,6 +97,9 @@
         </service>
         <service android:name="com.ybbbi.safe.service.BlacknumService" >
         </service>
+        <service 
+            android:name="com.ybbbi.safe.service.AddressService"
+            ></service>
 
         <activity
             android:name="com.ybbbi.safe.Contact_3rd_Activity"

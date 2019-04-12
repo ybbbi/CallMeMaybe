@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -109,7 +111,8 @@ public class HomeActivity extends Activity {
 	private void showConfirm() {
 
 		AlertDialog.Builder builder = new Builder(this);
-		View view = View.inflate(getApplicationContext(),
+		
+		final View view = View.inflate(getApplicationContext(),
 				R.layout.home_passwordconfirm_dialog, null);
 		builder.setView(view);
 		final TextView mPassword = (TextView) view
@@ -135,6 +138,7 @@ public class HomeActivity extends Activity {
 				if (password.length() == 0 || password == null) {
 					Toast.makeText(getApplicationContext(), "密码不能为空",
 							Toast.LENGTH_SHORT).show();
+					
 					return;
 				}
 				String pwd = Sharedpreferences.getString(

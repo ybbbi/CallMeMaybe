@@ -44,6 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:id="@+id/addressService_sv"
                 personal:Title="归属地显示"
                 personal:cache="true"
         >
