@@ -1,7 +1,10 @@
 package com.ybbbi.safe.service;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -15,6 +18,9 @@ public class AddressService extends Service {
 	private TelephonyManager tm;
 	private mylistener listener;
 	private UserDefined_toast toast;
+	private outCallBroad outCallBroad;
+	private IntentFilter filter;
+	private UserDefined_toast toast2;
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -28,8 +34,26 @@ public class AddressService extends Service {
 		toast = new UserDefined_toast(this);
 		tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
 		listener = new mylistener();
-		
+
 		tm.listen(listener, PhoneStateListener.LISTEN_CALL_STATE);
+		toast2 = new UserDefined_toast(this);
+		outCallBroad = new outCallBroad();
+		filter = new IntentFilter();
+		filter.addAction("android.intent.action.NEW_OUTGOING_CALL");
+		registerReceiver(outCallBroad, filter);
+
+	}
+
+	private class outCallBroad extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String num = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
+			String address = addressDB_DAO.address(AddressService.this, num);
+			if(address!=null){
+				toast.show(address);
+			}
+		}
 
 	}
 
@@ -41,13 +65,15 @@ public class AddressService extends Service {
 			switch (state) {
 			// 空闲
 			case TelephonyManager.CALL_STATE_IDLE:
+				toast.hide();
 				break;
 			// 响铃
 			case TelephonyManager.CALL_STATE_RINGING:
-				address = addressDB_DAO.address(AddressService.this, incomingNumber);
-				if(!(address==null||address.length()==0)){
-					//Toast.makeText(getApplicationContext(), address, Toast.LENGTH_LONG).show();
-					toast.show(incomingNumber);
+				address = addressDB_DAO.address(AddressService.this,
+						incomingNumber);
+				if (!(address == null || address.length() == 0)) {
+					toast.show(address);
+
 				}
 				break;
 			// 接听
@@ -59,10 +85,12 @@ public class AddressService extends Service {
 			super.onCallStateChanged(state, incomingNumber);
 		}
 	}
+
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		tm.listen(listener, PhoneStateListener.LISTEN_NONE);//关机监听
+		tm.listen(listener, PhoneStateListener.LISTEN_NONE);// 关机监听
+		unregisterReceiver(outCallBroad);
 	}
 
 }

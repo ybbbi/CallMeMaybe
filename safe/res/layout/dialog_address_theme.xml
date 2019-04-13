@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+		android:text="选择归属地风格样式"
+		android:textSize="20sp"
+		android:textColor="#FFFFFF"
+		android:gravity="center_vertical"
+		android:padding="8dp"
+		android:background="@android:color/darker_gray"        
+        />
+    <ListView 
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:id="@+id/address_theme_dialog_lv"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"
+        ></ListView>
+
+</LinearLayout>

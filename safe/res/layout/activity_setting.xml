@@ -58,6 +58,7 @@
         android:clickable="true"
         personal:Title="归属地风格"
         personal:cache="false"
+      android:id="@+id/st_DialogSetting"
         >
         
     </com.ybbbi.safe.view.SettingView>

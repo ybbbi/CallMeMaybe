@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import com.ybbbi.safe.Contact_3rd_Activity.findview;
+import com.ybbbi.safe.dialog.myDialog;
 import com.ybbbi.safe.service.AddressService;
 import com.ybbbi.safe.service.BlacknumService;
 import com.ybbbi.safe.utils.Sharedpreferences;
@@ -18,6 +20,7 @@ public class Setting_Activity extends Activity {
 	private SettingView setting_settingview_update;
 	private SettingView blacknum_shield;
 	private SettingView addrservice;
+	private SettingView dialogsetting;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +28,15 @@ public class Setting_Activity extends Activity {
 		setContentView(R.layout.activity_setting);
 		init();
 	}
-
+	
 	private void init() {
 		// 号码来电显示,开启服务并设置按钮显示
 		addrservice = (SettingView) findViewById(R.id.addressService_sv);
 		address();
-
+		
+		dialogsetting = (SettingView) findViewById(R.id.st_DialogSetting);
+		dialogTheme();
+		
 		setting_settingview_update = (SettingView) findViewById(R.id.setting_settingview_update);
 		blacknum_shield = (SettingView) findViewById(R.id.blacknum_shield);
 
@@ -39,6 +45,17 @@ public class Setting_Activity extends Activity {
 		setting_settingview_update.isButtonOn(b);
 		update_version();
 		shield();
+	}
+
+	private void dialogTheme() {
+		dialogsetting.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				myDialog dialog=new myDialog(Setting_Activity.this);
+				dialog.show();
+			}
+		});
 	}
 
 	private void address() {
