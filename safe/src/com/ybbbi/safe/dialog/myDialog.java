@@ -1,6 +1,8 @@
 package com.ybbbi.safe.dialog;
 
 import com.ybbbi.safe.R;
+import com.ybbbi.safe.utils.Sharedpreferences;
+import com.ybbbi.safe.utils.constants;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -18,7 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class myDialog extends Dialog {
-	private holder h;
+	
 	private String[] titles = new String[] { "红色", "正常","蓝色", "绿色", "灰色", "白色", "橙色" };
 	private int[] icon = new int[] { R.drawable.address_toast_red,
 			R.drawable.address_toast_normal, R.drawable.address_toast_blue,
@@ -47,6 +49,9 @@ public class myDialog extends Dialog {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				
+				dismiss();
+				Sharedpreferences.saveInt(getContext(), constants.THEMEBKG, icon[position]);
 				
 				
 			}
@@ -77,16 +82,14 @@ public class myDialog extends Dialog {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
-			
-			h = new holder();
+				holder h;
 			if (convertView == null) {
+				h = new holder();
 				convertView = View.inflate(getContext(),
 						R.layout.address_theme_listview, null);
 				h.tv=(TextView) convertView.findViewById(R.id.theme_dialog_tv);
 				h.imageicon=(ImageView) convertView.findViewById(R.id.theme_dialog_iv);
 				h.select=(ImageView) convertView.findViewById(R.id.theme_dialog_iv_select);
-				h.tv.setText(titles[position]);
-				h.imageicon.setImageResource(icon[position]);
 				convertView.setTag(h);
 			}else{
 				
@@ -94,6 +97,14 @@ public class myDialog extends Dialog {
 			
 			}
 			
+			h.tv.setText(titles[position]);
+			h.imageicon.setImageResource(icon[position]);
+			int int1 = Sharedpreferences.getInt(getContext(), constants.THEMEBKG, R.drawable.address_toast_normal);
+		//设置哪个被选择,哪个显示对勾
+				if(icon[position]==int1){
+					h.select.setVisibility(View.VISIBLE);
+				}else{
+					h.select.setVisibility(View.GONE);				}
 			
 
 			return convertView;

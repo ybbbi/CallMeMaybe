@@ -1,6 +1,8 @@
 package com.ybbbi.safe.view;
 
 import com.ybbbi.safe.database.dao.addressDB_DAO;
+import com.ybbbi.safe.utils.Sharedpreferences;
+import com.ybbbi.safe.utils.constants;
 
 import android.R;
 import android.content.Context;
@@ -10,6 +12,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +24,7 @@ public class UserDefined_toast {
 	private TextView tv;
 	private View v;
 	private WindowManager.LayoutParams params;
+	private LinearLayout layout;
 
 	public UserDefined_toast(Context context) {
 		// 有参构造
@@ -41,6 +46,9 @@ public class UserDefined_toast {
 		tv = (TextView) v.findViewById(com.ybbbi.safe.R.id.toast_tv);
 
 		tv.setText(number);
+		layout = (LinearLayout) v.findViewById(com.ybbbi.safe.R.id.toast_linearlayout);
+		int id = Sharedpreferences.getInt(context1, constants.THEMEBKG, com.ybbbi.safe.R.drawable.address_toast_normal);
+		layout.setBackgroundResource(id);
 		v.setOnTouchListener(new OnTouchListener() {
 
 			private float startx;

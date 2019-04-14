@@ -7,5 +7,6 @@ public interface constants {
 	public static final String sim="sim";
 	public static final String savenum = "num";
 	public static final String CHECKBOX = "checkbox";
+	public static final String THEMEBKG = "addressTheme";
 	
 }
