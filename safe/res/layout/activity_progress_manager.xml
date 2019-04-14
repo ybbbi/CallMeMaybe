@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+	<TextView 
+	    android:text="软件管家"
+	    style="@style/APPTitleStyles"
+	    />
+   <com.ybbbi.safe.view.MyProgressBar
+      
+       android:id="@+id/app_memory"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       ></com.ybbbi.safe.view.MyProgressBar>
+   <com.ybbbi.safe.view.MyProgressBar
+       android:id="@+id/app_sdcard"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       ></com.ybbbi.safe.view.MyProgressBar>
+   <ListView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/progress_manager_lv"
+       
+       ></ListView>
+   
+
+</LinearLayout>

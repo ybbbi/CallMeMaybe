@@ -56,9 +56,9 @@ public class SplashActivity extends Activity {
 		initView();
 		//copyDatabase("address.db");会进行耗时操作,开启子线程
 	
-				copyDatabase("address.db");
+				copyDatabase(constants.CPYDBADDRESS);
 				
-			
+				copyDatabase(constants.CPYDBCOMMONNUM);
 	}
 	private void copyDatabase(String name) {
 		AssetManager assets = getAssets();

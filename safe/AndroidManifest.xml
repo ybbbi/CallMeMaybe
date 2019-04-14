@@ -7,9 +7,10 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="19" />
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-	<uses-permission android:name="android.permission.VIBRATE"/>
+
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
@@ -99,9 +100,8 @@
         </service>
         <service android:name="com.ybbbi.safe.service.BlacknumService" >
         </service>
-        <service 
-            android:name="com.ybbbi.safe.service.AddressService"
-            ></service>
+        <service android:name="com.ybbbi.safe.service.AddressService" >
+        </service>
 
         <activity
             android:name="com.ybbbi.safe.Contact_3rd_Activity"
@@ -127,7 +127,14 @@
             android:name="com.ybbbi.safe.SearchNum_Activity"
             android:label="@string/title_activity_search_num_" >
         </activity>
-        
+        <activity
+            android:name="com.ybbbi.safe.CommomNum_searchActivity"
+            android:label="@string/title_activity_commom_num_search" >
+        </activity>
+        <activity
+            android:name="com.ybbbi.safe.ProgressManagerActivity"
+            android:label="@string/title_activity_progress_manager" >
+        </activity>
     </application>
 
 </manifest>

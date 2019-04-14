@@ -21,7 +21,7 @@
     </com.ybbbi.safe.view.SettingView>
 
     <com.ybbbi.safe.view.SettingView
-        android:id="@+id/tools_shield"
+        android:id="@+id/tools_commonNum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_setting_sv_bottom"

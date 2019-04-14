@@ -20,5 +20,7 @@
     <string name="title_activity_update_blacklist_">Update_blacklist_Activity</string>
     <string name="title_activity_tools_">Tools_Activity</string>
     <string name="title_activity_search_num_">SearchNum_Activity</string>
+    <string name="title_activity_commom_num_search">CommomNum_searchActivity</string>
+    <string name="title_activity_progress_manager">ProgressManagerActivity</string>
 
 </resources>

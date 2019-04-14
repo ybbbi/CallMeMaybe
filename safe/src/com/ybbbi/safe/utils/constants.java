@@ -8,5 +8,7 @@ public interface constants {
 	public static final String savenum = "num";
 	public static final String CHECKBOX = "checkbox";
 	public static final String THEMEBKG = "addressTheme";
+	public static final String CPYDBCOMMONNUM = "commonnum.db";
+	public static final String CPYDBADDRESS = "address.db";
 	
 }
