@@ -135,6 +135,10 @@
             android:name="com.ybbbi.safe.ProgressManagerActivity"
             android:label="@string/title_activity_progress_manager" >
         </activity>
+        <activity
+            android:name="com.ybbbi.safe.ProcessedManagerActivity"
+            android:label="@string/title_activity_processed_manager" >
+        </activity>
     </application>
 
 </manifest>

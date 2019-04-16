@@ -5,6 +5,7 @@
     android:orientation="horizontal"
     android:background="@drawable/pop_bg_2" >
     <LinearLayout 
+        android:id="@+id/popwindow_message"
         android:layout_margin="3dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,6 +31,7 @@
         
     </LinearLayout>
     <LinearLayout 
+         android:id="@+id/popwindow_uninstall"
         android:layout_margin="3dp"
         android:padding="2dp"
         android:layout_width="wrap_content"
@@ -55,6 +57,7 @@
         
     </LinearLayout>
     <LinearLayout 
+         android:id="@+id/popwindow_open"
         android:layout_margin="3dp"
         android:padding="2dp"
         android:layout_width="wrap_content"
@@ -81,6 +84,7 @@
         
     </LinearLayout>
      <LinearLayout 
+          android:id="@+id/popwindow_share"
          android:layout_margin="3dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

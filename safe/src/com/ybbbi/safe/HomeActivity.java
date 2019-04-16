@@ -88,7 +88,8 @@ public class HomeActivity extends Activity {
 
 					break;
 				case 3:
-
+					Intent intent3=new Intent(HomeActivity.this,ProcessedManagerActivity.class);
+					startActivity(intent3);
 					break;
 				case 4:
 
@@ -109,7 +110,7 @@ public class HomeActivity extends Activity {
 			}
 		});
 	}
-
+	
 	private void showConfirm() {
 
 		AlertDialog.Builder builder = new Builder(this);

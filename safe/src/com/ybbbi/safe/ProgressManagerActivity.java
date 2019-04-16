@@ -7,12 +7,17 @@ import com.ybbbi.safe.bean.Appinfo;
 import com.ybbbi.safe.view.AppManager;
 import com.ybbbi.safe.view.MyProgressBar;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.text.format.Formatter;
+import android.text.method.HideReturnsTransformationMethod;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
@@ -23,8 +28,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class ProgressManagerActivity extends Activity {
+public class ProgressManagerActivity extends Activity implements
+		OnClickListener {
 
 	private MyProgressBar sdcard;
 	private MyProgressBar memory;
@@ -35,6 +42,7 @@ public class ProgressManagerActivity extends Activity {
 	private ArrayList<Appinfo> Systemlist;
 	private TextView tv_User;
 	private Appinfo appinfo;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -49,42 +57,112 @@ public class ProgressManagerActivity extends Activity {
 	private void onitemclick() {
 		listview.setOnItemClickListener(new OnItemClickListener() {
 
-
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				//如果为用户程序信息textview
-				if(position==0||position==Userlist.size()+1){
+				// 如果为用户程序信息textview
+				if (position == 0 || position == Userlist.size() + 1) {
 					return;
 				}
-				if(position<=Userlist.size()){
-					appinfo=Userlist.get(position-1);
-				}else{
-					appinfo=Systemlist.get(position-Userlist.size()-2);
+				if (position <= Userlist.size()) {
+					appinfo = Userlist.get(position - 1);
+				} else {
+					appinfo = Systemlist.get(position - Userlist.size() - 2);
 				}
 				popdismiss();
-					View Contentview=View.inflate(getApplicationContext(), R.layout.popwindow, null);
-					pop = new PopupWindow(Contentview, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-					
-					pop.showAsDropDown(view, view.getWidth()/2+10, -view.getHeight());	
-				
-				
-				
-				
-				
-				
+				View Contentview = View.inflate(getApplicationContext(),
+						R.layout.popwindow, null);
+				Contentview.findViewById(R.id.popwindow_message)
+						.setOnClickListener(ProgressManagerActivity.this);
+				Contentview.findViewById(R.id.popwindow_uninstall)
+						.setOnClickListener(ProgressManagerActivity.this);
+				Contentview.findViewById(R.id.popwindow_open)
+						.setOnClickListener(ProgressManagerActivity.this);
+				Contentview.findViewById(R.id.popwindow_share)
+						.setOnClickListener(ProgressManagerActivity.this);
+				pop = new PopupWindow(Contentview, LayoutParams.WRAP_CONTENT,
+						LayoutParams.WRAP_CONTENT);
+				pop.setAnimationStyle(R.style.Animation);
+				pop.showAsDropDown(view, view.getWidth() / 2 + 10,
+						-view.getHeight());
+
 			}
 
-			
 		});
 	}
 
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.popwindow_message:
+			Intent intent=new Intent();
+			intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+			intent.addCategory("android.intent.category.DEFAULT");
+			intent.setData(Uri.parse("package:"+appinfo.packagename));
+			startActivity(intent);
+			break;
+		case R.id.popwindow_open:
+			PackageManager pm = getPackageManager();
+			Intent intent2 = pm.getLaunchIntentForPackage(appinfo.packagename);
+			if (intent2 != null) {
+
+				startActivity(intent2);
+			} else {
+
+				Toast.makeText(getApplicationContext(), "系统程序,无法打开", 0).show();
+			}
+			break;
+		case R.id.popwindow_share:
+			Intent intent3 = new Intent();
+			intent3.setAction("android.intent.action.SEND");
+			intent3.addCategory("android.intent.category.DEFAULT");
+			intent3.setType("text/plain");
+			intent3.putExtra(Intent.EXTRA_TEXT, appinfo.label
+					+ "很好用的一款软件,快去应用市场搜索下载吧");
+			startActivity(intent3);
+			break;
+		case R.id.popwindow_uninstall:
+			/*
+			 * <intent-filter> <action android:name="android.intent.action.VIEW"
+			 * /> <action android:name="android.intent.action.DELETE" />
+			 * <category android:name="android.intent.category.DEFAULT" /> <data
+			 * android:scheme="package" /> </intent-filter>
+			 */
+			if (appinfo.packagename.equals(getPackageName())) {
+				Toast.makeText(getApplicationContext(), "无法卸载此应用", 0).show();
+				return;
+			}
+			if (appinfo.system) {
+				Toast.makeText(getApplicationContext(), "请先获取root权限", 0).show();
+			} else {
+
+				Intent intent4 = new Intent();
+				intent4.setAction("android.intent.action.VIEW");
+				intent4.setAction("android.intent.action.DELETE");
+
+				intent4.setData(Uri.parse("package:" + appinfo.packagename));
+				intent4.addCategory("android.intent.category.DEFAULT");
+				startActivityForResult(intent4, 1);
+			}
+			break;
+		}
+		popdismiss();
+
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		initdata();
+		super.onActivityResult(1, 0, data);
+	}
+
 	private void popdismiss() {
-		if(pop !=null){
+		if (pop != null) {
 			pop.dismiss();
-			pop=null;
+			pop = null;
 		}
 	}
+
 	private void Scroll() {
 		listview.setOnScrollListener(new OnScrollListener() {
 
@@ -97,7 +175,7 @@ public class ProgressManagerActivity extends Activity {
 			public void onScroll(AbsListView view, int firstVisibleItem,
 					int visibleItemCount, int totalItemCount) {
 				popdismiss();
-				if (Systemlist != null && Userlist != null) {//不判断会空指针
+				if (Systemlist != null && Userlist != null) {// 不判断会空指针
 					if (firstVisibleItem >= Userlist.size() + 1) {
 						tv_User.setText("系统应用(" + Systemlist.size() + "):");
 					} else {
@@ -108,6 +186,7 @@ public class ProgressManagerActivity extends Activity {
 			}
 		});
 	}
+
 	@Override
 	protected void onDestroy() {
 		popdismiss();
@@ -226,7 +305,6 @@ public class ProgressManagerActivity extends Activity {
 				} else {
 					h = (holder) convertView.getTag();
 				}
-				
 
 				if (position <= Userlist.size()) {
 					// 通过系统list长度作比较判断是否为系统程序
