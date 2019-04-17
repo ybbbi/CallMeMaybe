@@ -3,6 +3,9 @@ package com.ybbbi.safe;
 import java.io.File;
 import java.util.ArrayList;
 
+import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
+import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
+
 import com.ybbbi.safe.bean.Appinfo;
 import com.ybbbi.safe.view.AppManager;
 import com.ybbbi.safe.view.MyProgressBar;
@@ -14,6 +17,7 @@ import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.text.format.Formatter;
 import android.text.method.HideReturnsTransformationMethod;
 import android.view.View;
@@ -36,11 +40,11 @@ public class ProgressManagerActivity extends Activity implements
 	private MyProgressBar sdcard;
 	private MyProgressBar memory;
 	private PopupWindow pop;
-	private ListView listview;
+	private StickyListHeadersListView listview;
 	private ArrayList<Appinfo> list;
 	private ArrayList<Appinfo> Userlist;
 	private ArrayList<Appinfo> Systemlist;
-	private TextView tv_User;
+	//private TextView tv_User;
 	private Appinfo appinfo;
 
 	@Override
@@ -61,13 +65,13 @@ public class ProgressManagerActivity extends Activity implements
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// 如果为用户程序信息textview
-				if (position == 0 || position == Userlist.size() + 1) {
+				/*if (position == 0 || position == Userlist.size() + 1) {
 					return;
-				}
+				}*/
 				if (position <= Userlist.size()) {
-					appinfo = Userlist.get(position - 1);
+					appinfo = Userlist.get(position );
 				} else {
-					appinfo = Systemlist.get(position - Userlist.size() - 2);
+					appinfo = Systemlist.get(position - Userlist.size() );
 				}
 				popdismiss();
 				View Contentview = View.inflate(getApplicationContext(),
@@ -175,14 +179,14 @@ public class ProgressManagerActivity extends Activity implements
 			public void onScroll(AbsListView view, int firstVisibleItem,
 					int visibleItemCount, int totalItemCount) {
 				popdismiss();
-				if (Systemlist != null && Userlist != null) {// 不判断会空指针
-					if (firstVisibleItem >= Userlist.size() + 1) {
+				/*if (Systemlist != null && Userlist != null) {// 不判断会空指针
+					if (firstVisibleItem >= Userlist.size() +1) {
 						tv_User.setText("系统应用(" + Systemlist.size() + "):");
 					} else {
 						tv_User.setText("用户应用(" + Userlist.size() + "):");
 
 					}
-				}
+				}*/
 			}
 		});
 	}
@@ -194,7 +198,7 @@ public class ProgressManagerActivity extends Activity implements
 	}
 
 	private void initdata() {
-		listview = (ListView) findViewById(R.id.progress_manager_lv);
+		listview = (StickyListHeadersListView) findViewById(R.id.progress_manager_lv);
 
 		new Thread() {
 			private myAdapter adapter;
@@ -223,7 +227,7 @@ public class ProgressManagerActivity extends Activity implements
 					public void run() {
 
 						listview.setAdapter(new myAdapter());
-						tv_User.setText("用户应用(" + Userlist.size() + "):");
+						//tv_User.setText("用户应用(" + Userlist.size() + "):");
 
 					}
 				});
@@ -232,14 +236,14 @@ public class ProgressManagerActivity extends Activity implements
 
 	}
 
-	private class myAdapter extends BaseAdapter {
+	private class myAdapter extends BaseAdapter implements StickyListHeadersAdapter{
 
 		@Override
 		public int getCount() {
-			return Userlist.size() + Systemlist.size() + 2;
+			return Userlist.size() + Systemlist.size() ;
 		}
 
-		@Override
+	/*	@Override
 		// 通知getview,哪个listview使用自定义样式
 		public int getItemViewType(int position) {
 			if (position == 0 || position == Userlist.size() + 1) {// 使用自定义样式
@@ -254,7 +258,7 @@ public class ProgressManagerActivity extends Activity implements
 		// 通知系统 使用几个自定义样式listview
 		public int getViewTypeCount() {
 			return 2;
-		}
+		}*/
 
 		@Override
 		public Object getItem(int position) {
@@ -268,7 +272,7 @@ public class ProgressManagerActivity extends Activity implements
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			int type = getItemViewType(position);
+		/*	int type = getItemViewType(position);
 			if (type == 0) {
 				if (position == 0) {
 					View view = View.inflate(getApplicationContext(),
@@ -287,7 +291,9 @@ public class ProgressManagerActivity extends Activity implements
 					return view;
 				}
 			}
-			if (type == 1) {
+			if (type == 1) {*/
+			
+			
 				holder h;
 				if (convertView == null) {
 					convertView = View.inflate(getApplicationContext(),
@@ -306,13 +312,13 @@ public class ProgressManagerActivity extends Activity implements
 					h = (holder) convertView.getTag();
 				}
 
-				if (position <= Userlist.size()) {
+				if (position < Userlist.size()) {
 					// 通过系统list长度作比较判断是否为系统程序
-					appinfo = Userlist.get(position - 1);
+					appinfo = Userlist.get(position );
 
 				} else {
 
-					appinfo = Systemlist.get(position - Userlist.size() - 2);
+					appinfo = Systemlist.get(position - Userlist.size());
 				}
 
 				h.icon.setImageDrawable(appinfo.icon);
@@ -325,10 +331,47 @@ public class ProgressManagerActivity extends Activity implements
 
 				h.size.setText(appinfo.size);
 
-				h.packagename.setText(appinfo.packagename);
-			}
+				h.packagename.setText(appinfo.label);
+			//}
 			return convertView;
 
+		}
+
+		@Override
+		public View getHeaderView(int position, View convertView,
+				ViewGroup parent) {
+			TextView text = new TextView(getApplicationContext());
+			text.setTextColor(Color.GRAY);
+			text.setBackgroundResource(R.drawable.commonnum_bkg_group);
+			text.setPadding(10, 10, 8, 8);
+			text.setTextSize(20);
+			if (position < Userlist.size()) {
+				// 通过系统list长度作比较判断是否为系统程序
+				appinfo = Userlist.get(position );
+
+			} else {
+
+				appinfo = Systemlist.get(position - Userlist.size() );
+			}
+			
+			text.setText(appinfo.system ?  "系统应用(" + Systemlist.size() + "):":"用户应用(" + Userlist.size() + "):" );
+
+			
+			
+			return text;
+		}
+
+		@Override
+		public long getHeaderId(int position) {
+			if (position < Userlist.size()) {
+				// 通过系统list长度作比较判断是否为系统程序
+				appinfo = Userlist.get(position );
+
+			} else {
+
+				appinfo = Systemlist.get(position - Userlist.size() );
+			}
+			return appinfo.system?0:1;
 		}
 
 	}
@@ -342,7 +385,7 @@ public class ProgressManagerActivity extends Activity implements
 	private void init() {
 		memory = (MyProgressBar) findViewById(R.id.app_memory);
 		sdcard = (MyProgressBar) findViewById(R.id.app_sdcard);
-		tv_User = (TextView) findViewById(R.id.tv_userApp);
+		//tv_User = (TextView) findViewById(R.id.tv_userApp);
 
 	}
 

@@ -24,12 +24,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 		
-        <ListView
+        <se.emilsjolander.stickylistheaders.StickyListHeadersListView
             android:id="@+id/progress_manager_lv"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
-        </ListView>
-        <TextView 
+        </se.emilsjolander.stickylistheaders.StickyListHeadersListView>
+       <!--  <TextView 
 		     android:background="@drawable/commonnum_bkg_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
         android:textSize="20sp"
         android:id="@+id/tv_userApp"
         android:textColor="#CC000000"
-		    />
+		    /> -->
     </RelativeLayout>
 
 </LinearLayout>

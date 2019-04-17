@@ -1,0 +1,150 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:personal="http://schemas.android.com/apk/res/com.ybbbi.safe"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#4400FF00"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="进程管理"
+            android:textSize="30sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="5dp"
+            android:clickable="true"
+            android:onClick="clean"
+            android:src="@drawable/selector_processedmanager_clean" />
+    </FrameLayout>
+
+    <com.ybbbi.safe.view.MyProgressBar
+        android:id="@+id/process_memory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.ybbbi.safe.view.MyProgressBar>
+
+    <com.ybbbi.safe.view.MyProgressBar
+        android:id="@+id/process_sdcard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.ybbbi.safe.view.MyProgressBar>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <se.emilsjolander.stickylistheaders.StickyListHeadersListView
+            android:id="@+id/processed_manager_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </se.emilsjolander.stickylistheaders.StickyListHeadersListView>
+
+        <SlidingDrawer
+            android:id="@+id/slidingDrawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:content="@+id/ll_content"
+            android:handle="@+id/ll_handle" >
+
+            <LinearLayout
+                android:gravity="center"
+                android:id="@+id/ll_handle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/drawer_bg"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/process_iv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/drawer_arrow_up" />
+
+                <ImageView
+                    android:id="@+id/process_iv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/drawer_arrow_up" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_content"
+                android:background="#FFFFFF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" 
+                android:clickable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="管理设置"
+                    android:textColor="#66000000"
+                    android:textSize="20sp" />
+
+                <com.ybbbi.safe.view.SettingView
+                    android:id="@+id/setting_settingview_update"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_setting_sv_top"
+                    android:clickable="true"
+                    personal:Title="显示系统进程"
+                    personal:cache="true" >  </com.ybbbi.safe.view.SettingView>
+
+                    <com.ybbbi.safe.view.SettingView
+                        android:id="@+id/setting_settingview_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_setting_sv_top"
+                        android:clickable="true"
+                        personal:Title="锁屏清理进程"
+                        personal:cache="true" >
+                    </com.ybbbi.safe.view.SettingView>
+              
+            </LinearLayout>
+        </SlidingDrawer>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_home_dialog_password_cancel"
+            android:onClick="All"
+            android:text="全选"
+            android:textColor="#000000" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_home_dialog_password_cancel"
+            android:onClick="unAll"
+            android:text="反选"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+</LinearLayout>
