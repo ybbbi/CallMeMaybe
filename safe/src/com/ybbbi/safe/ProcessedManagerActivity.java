@@ -9,24 +9,36 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.Formatter;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.SlidingDrawer;
+import android.widget.SlidingDrawer.OnDrawerCloseListener;
+import android.widget.SlidingDrawer.OnDrawerOpenListener;
 import android.widget.Toast;
 
 import android.widget.TextView;
 
 import com.ybbbi.safe.bean.ProcessAppInfo;
+import com.ybbbi.safe.service.ScreenLockService;
+import com.ybbbi.safe.utils.Sharedpreferences;
+import com.ybbbi.safe.utils.blacknum_shieldUtils;
+import com.ybbbi.safe.utils.constants;
 import com.ybbbi.safe.view.MyProgressBar;
 import com.ybbbi.safe.view.ProcessManager;
+import com.ybbbi.safe.view.SettingView;
 
 public class ProcessedManagerActivity extends Activity {
 
@@ -41,6 +53,12 @@ public class ProcessedManagerActivity extends Activity {
 	private StickyListHeadersListView listview;
 	private int process;
 	private int processAll;
+	private ImageView iv1;
+	private ImageView iv2;
+	private SlidingDrawer drawer;
+	private SettingView lock;
+	private SettingView system;
+	private boolean systemProcess =true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +66,47 @@ public class ProcessedManagerActivity extends Activity {
 		setContentView(R.layout.activity_processed_manager);
 		init();
 		initdata();
-
+	
 	}
 
 	private void init() {
+		
+		
+		
+		
+		
+		drawer = (SlidingDrawer) findViewById(R.id.slidingDrawer);
+		drawer.setOnDrawerOpenListener(new OnDrawerOpenListener() {
+
+			@Override
+			public void onDrawerOpened() {
+				iv1.clearAnimation();
+				iv2.clearAnimation();
+				iv1.setImageResource(R.drawable.drawer_arrow_down);
+				iv2.setImageResource(R.drawable.drawer_arrow_down);
+				Animation();
+			}
+		});
+		drawer.setOnDrawerCloseListener(new OnDrawerCloseListener() {
+
+			@Override
+			public void onDrawerClosed() {
+				iv1.setImageResource(R.drawable.drawer_arrow_up);
+				iv2.setImageResource(R.drawable.drawer_arrow_up);
+				Animation();
+			}
+		});
+
+		lock = (SettingView) findViewById(R.id.process_settingview_lock);
+		lock();
+		system = (SettingView) findViewById(R.id.process_settingview_system);
+		click();
+		
+		
+		iv1 = (ImageView) findViewById(R.id.process_iv1);
+		iv2 = (ImageView) findViewById(R.id.process_iv2);
+		Animation();
+
 		memory = (MyProgressBar) findViewById(R.id.process_memory);
 		sdcard = (MyProgressBar) findViewById(R.id.process_sdcard);
 		listview = (StickyListHeadersListView) findViewById(R.id.processed_manager_lv);
@@ -81,6 +136,64 @@ public class ProcessedManagerActivity extends Activity {
 				adapter.notifyDataSetChanged();
 			}
 		});
+	}
+
+	private void lock() {
+		lock.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent=new Intent(ProcessedManagerActivity.this,ScreenLockService.class);
+				if(blacknum_shieldUtils.isRunning(ProcessedManagerActivity.this, "com.ybbbi.safe.service.ScreenLockService")){
+					stopService(intent);
+				}else{
+					startService(intent);
+				}
+				lock.setButtonstate();
+			}
+		});
+	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		boolean b = blacknum_shieldUtils.isRunning(ProcessedManagerActivity.this, "com.ybbbi.safe.service.ScreenLockService");
+		lock.isButtonOn(b);
+	}
+
+	private void click() {
+		
+		
+		boolean boolean1 = Sharedpreferences.getBoolean(getApplicationContext(), constants.PROCESSSYSTEM, true);
+		system.isButtonOn(boolean1);
+		systemProcess=boolean1;
+		
+		system.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				system.setButtonstate();
+				boolean buttonstate = system.Buttonstate();
+				systemProcess=buttonstate;
+				adapter.notifyDataSetChanged();
+				Sharedpreferences.saveBoolean(getApplicationContext(), constants.PROCESSSYSTEM, system.Buttonstate());
+			}
+		});
+	}
+
+	private void Animation() {
+		AlphaAnimation am1 = new AlphaAnimation(0.1f, 1.0f);
+		am1.setDuration(500);
+		am1.setRepeatCount(android.view.animation.Animation.INFINITE);
+		am1.setRepeatMode(android.view.animation.Animation.REVERSE);
+		iv1.startAnimation(am1);
+
+		AlphaAnimation am2 = new AlphaAnimation(1.0f, 0.1f);
+		am2.setDuration(500);
+		am2.setRepeatCount(android.view.animation.Animation.INFINITE);
+		am2.setRepeatMode(android.view.animation.Animation.REVERSE);
+		iv2.startAnimation(am2);
+
 	}
 
 	private void initdata() {
@@ -124,7 +237,7 @@ public class ProcessedManagerActivity extends Activity {
 
 		@Override
 		public int getCount() {
-			return Userlist.size() + Systemlist.size();
+			return systemProcess?Userlist.size() + Systemlist.size():Userlist.size();
 		}
 
 		@Override
@@ -260,12 +373,14 @@ public class ProcessedManagerActivity extends Activity {
 				am.killBackgroundProcesses(info.packageName);
 				Dlist.add(info);
 			}
-		}
-		for (ProcessAppInfo info : Systemlist) {
-			if (info.isChecked) {
-				am.killBackgroundProcesses(info.packageName);
-				Dlist.add(info);
-
+		}if(systemProcess){
+			
+			for (ProcessAppInfo info : Systemlist) {
+				if (info.isChecked) {
+					am.killBackgroundProcesses(info.packageName);
+					Dlist.add(info);
+					
+				}
 			}
 		}
 		double Isize = 0;
@@ -281,15 +396,14 @@ public class ProcessedManagerActivity extends Activity {
 			Ssize = split[0];
 
 			Isize += Double.parseDouble(Ssize);
-			
+
 		}
 
 		Toast.makeText(getApplicationContext(),
-				"清理" + Dlist.size() + "个进程,释放" + df.format(Isize) + "MB内存", 0).show();
+				"清理" + Dlist.size() + "个进程,释放" + df.format(Isize) + "MB内存", 0)
+				.show();
 
 		setdata2();
-		
-		
 
 		process = process - Dlist.size();
 		memory.setText_left("正在运行" + process + "个");
@@ -305,9 +419,12 @@ public class ProcessedManagerActivity extends Activity {
 				info.isChecked = true;
 			}
 		}
-		for (ProcessAppInfo info : Systemlist) {
-			if (!info.packageName.equals(getPackageName())) {
-				info.isChecked = true;
+		if(systemProcess){
+			
+			for (ProcessAppInfo info : Systemlist) {
+				if (!info.packageName.equals(getPackageName())) {
+					info.isChecked = true;
+				}
 			}
 		}
 		adapter.notifyDataSetChanged();
@@ -319,9 +436,12 @@ public class ProcessedManagerActivity extends Activity {
 				info.isChecked = !info.isChecked;
 			}
 		}
-		for (ProcessAppInfo info : Systemlist) {
-			if (!info.packageName.equals(getPackageName())) {
-				info.isChecked = !info.isChecked;
+		if(systemProcess){
+			
+			for (ProcessAppInfo info : Systemlist) {
+				if (!info.packageName.equals(getPackageName())) {
+					info.isChecked = !info.isChecked;
+				}
 			}
 		}
 		adapter.notifyDataSetChanged();

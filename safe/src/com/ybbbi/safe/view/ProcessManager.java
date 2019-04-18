@@ -132,22 +132,22 @@ public class ProcessManager {
 		PackageManager pm = context.getPackageManager();
 		for (RunningAppProcessInfo runningAppProcessInfo : runningAppProcesses) {
 			ProcessAppInfo pa = new ProcessAppInfo();
-			
+
 			String processName = runningAppProcessInfo.processName;
-			pa.packageName=processName;
+			pa.packageName = processName;
 			android.os.Debug.MemoryInfo[] memoryInfo = am
 					.getProcessMemoryInfo(new int[] { runningAppProcessInfo.pid });
 			int totalPss = memoryInfo[0].getTotalPss();
 			long size = totalPss * 1024;
 			String Size = Formatter.formatFileSize(context, size);
-			pa.size=Size;
+			pa.size = Size;
 			try {
 				ApplicationInfo applicationInfo = pm.getApplicationInfo(
 						processName, 0);
 				String name = applicationInfo.loadLabel(pm).toString();
-				pa.name=name;
+				pa.name = name;
 				Drawable loadIcon = applicationInfo.loadIcon(pm);
-				pa.icon=loadIcon;
+				pa.icon = loadIcon;
 				int flags = applicationInfo.flags;
 				boolean isSystem;
 				if ((flags & ApplicationInfo.FLAG_SYSTEM) == ApplicationInfo.FLAG_SYSTEM) {
@@ -155,12 +155,13 @@ public class ProcessManager {
 				} else {
 					isSystem = false;
 				}
-				pa.isSystem=isSystem;
+				pa.isSystem = isSystem;
 
 			} catch (NameNotFoundException e) {
-				pa.name=processName;
-				pa.icon=context.getResources().getDrawable(R.drawable.defalut);
-				pa.isSystem=true;
+				pa.name = processName;
+				pa.icon = context.getResources()
+						.getDrawable(R.drawable.defalut);
+				pa.isSystem = true;
 				e.printStackTrace();
 			}
 			list.add(pa);
@@ -169,4 +170,20 @@ public class ProcessManager {
 		return list;
 
 	}
+
+	public static void cleanScreenoff(Context context) {
+		ActivityManager am = (ActivityManager) context
+				.getSystemService(Context.ACTIVITY_SERVICE);
+		List<RunningAppProcessInfo> runningAppProcesses = am
+				.getRunningAppProcesses();
+		for (RunningAppProcessInfo runningAppProcessInfo : runningAppProcesses) {
+			if (!runningAppProcessInfo.processName.equals(context
+					.getPackageName())) {
+
+				am.killBackgroundProcesses(runningAppProcessInfo.processName);
+			}
+
+		}
+	}
+
 }

@@ -96,7 +96,7 @@
                     android:textSize="20sp" />
 
                 <com.ybbbi.safe.view.SettingView
-                    android:id="@+id/setting_settingview_update"
+                    android:id="@+id/process_settingview_system"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/selector_setting_sv_top"
@@ -105,10 +105,10 @@
                     personal:cache="true" >  </com.ybbbi.safe.view.SettingView>
 
                     <com.ybbbi.safe.view.SettingView
-                        android:id="@+id/setting_settingview_update"
+                        android:id="@+id/process_settingview_lock"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/selector_setting_sv_top"
+                        android:background="@drawable/selector_setting_sv_bottom"
                         android:clickable="true"
                         personal:Title="锁屏清理进程"
                         personal:cache="true" >
