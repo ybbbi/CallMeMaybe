@@ -1,5 +1,6 @@
 package com.ybbbi.safe.broad;
 
+import com.ybbbi.safe.service.ForeService;
 import com.ybbbi.safe.utils.Sharedpreferences;
 import com.ybbbi.safe.utils.constants;
 
@@ -33,6 +34,7 @@ public class BOOT_COMPLETED_broad extends BroadcastReceiver {
 				}
 			}
 		}
+		context.startService(new Intent(context,ForeService.class));
 
 	}
 

@@ -23,5 +23,6 @@
     <string name="title_activity_commom_num_search">CommomNum_searchActivity</string>
     <string name="title_activity_progress_manager">ProgressManagerActivity</string>
     <string name="title_activity_processed_manager">ProcessedManagerActivity</string>
+    <string name="title_activity_applock">APPLockActivity</string>
 
 </resources>

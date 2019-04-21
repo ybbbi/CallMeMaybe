@@ -29,6 +29,7 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
+import com.ybbbi.safe.service.ForeService;
 import com.ybbbi.safe.utils.Sharedpreferences;
 import com.ybbbi.safe.utils.constants;
 import com.ybbbi.safe.utils.packageUtil;
@@ -55,6 +56,8 @@ public class SplashActivity extends Activity {
 		setContentView(R.layout.activity_splash);
 		initView();
 		//copyDatabase("address.db");会进行耗时操作,开启子线程
+		
+		
 	
 				copyDatabase(constants.CPYDBADDRESS);
 				

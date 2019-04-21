@@ -32,12 +32,12 @@ import android.widget.Toast;
 import android.widget.TextView;
 
 import com.ybbbi.safe.bean.ProcessAppInfo;
+import com.ybbbi.safe.manager.ProcessManager;
 import com.ybbbi.safe.service.ScreenLockService;
 import com.ybbbi.safe.utils.Sharedpreferences;
 import com.ybbbi.safe.utils.blacknum_shieldUtils;
 import com.ybbbi.safe.utils.constants;
 import com.ybbbi.safe.view.MyProgressBar;
-import com.ybbbi.safe.view.ProcessManager;
 import com.ybbbi.safe.view.SettingView;
 
 public class ProcessedManagerActivity extends Activity {

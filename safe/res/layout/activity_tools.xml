@@ -32,6 +32,7 @@
 
     <com.ybbbi.safe.view.SettingView
         android:layout_marginTop="5dp"
+        android:id="@+id/tools_sv_readsms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_setting_sv_top"
@@ -41,6 +42,8 @@
     </com.ybbbi.safe.view.SettingView>
 
     <com.ybbbi.safe.view.SettingView
+        
+        android:id="@+id/tools_sv_writesms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_setting_sv_bottom"
@@ -56,6 +59,7 @@
         android:background="@drawable/selector_setting_sv_top"
         android:clickable="true"
         personal:Title="程序锁管理"
+        android:id="@+id/tools_sv_applock"
         personal:cache="false" >
     </com.ybbbi.safe.view.SettingView>
 

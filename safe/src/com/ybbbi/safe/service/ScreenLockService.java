@@ -1,6 +1,6 @@
 package com.ybbbi.safe.service;
 
-import com.ybbbi.safe.view.ProcessManager;
+import com.ybbbi.safe.manager.ProcessManager;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;

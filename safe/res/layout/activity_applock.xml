@@ -1,0 +1,91 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#5587CEFF"
+        android:gravity="center"
+        android:padding="8dp" >
+
+        <Button
+            android:id="@+id/applock_unlock"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:background="@drawable/shape_applock_unlock_btn_select"
+            android:text="未加锁"
+            android:textColor="@color/applockBtnSelect" />
+
+        <Button
+            android:id="@+id/applock_lock"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_toRightOf="@+id/applock_unlock"
+            android:background="@drawable/shape_applock_lock_btn_normal"
+            android:text="已加锁"
+            android:textColor="@color/applockBtnNormal" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/applock_ll_unlock"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/applock_unlock_tv"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@color/applocklist"
+                android:padding="10dp"
+                android:text="未加锁(0)"
+                android:textColor="#99000000"
+                android:textSize="18sp" >
+                
+                    
+            </TextView>
+            <ListView 
+                android:id="@+id/applock_listview_unlock"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                ></ListView>
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="match_parent"
+            android:id="@+id/applock_ll_lock"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/applock_lock_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@color/applocklist"
+                android:padding="10dp"
+                android:text="已加锁(0)"
+                android:textColor="#99000000"
+                android:textSize="18sp" >
+                
+                    
+            </TextView>
+            <ListView 
+                android:id="@+id/applock_listview_lock"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                ></ListView>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -5,4 +5,7 @@
      <color name="textColorPrimaryDark">#ff000000</color>
      <color name="textColorPrimary">#ffffffff</color>
      <color name="white">#ffffffff</color>
+     <color name="applocklist">#FFEFDB</color>
+     <color name="applockBtnSelect">#FFFFFF</color>
+     <color name="applockBtnNormal">#5587CEFF</color>
 </resources>

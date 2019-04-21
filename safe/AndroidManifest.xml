@@ -8,6 +8,8 @@
         android:minSdkVersion="11"
         android:targetSdkVersion="19" />
 
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -79,13 +81,9 @@
             </intent-filter>
 
             <meta-data
-                
                 android:name="android.appwidget.provider"
                 android:resource="@xml/process_widget_provider" />
         </receiver>
-        
-        
-        
         <receiver android:name="com.ybbbi.safe.broad.BOOT_COMPLETED_broad" >
             <intent-filter android:priority="1000" >
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -109,6 +107,11 @@
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
+        <receiver android:name="com.ybbbi.safe.broad.CleanProcessReceiver" >
+            <intent-filter>
+                <action android:name="com.ybbbi.safe.Widgetservice" />
+            </intent-filter>
+        </receiver>
 
         <service android:name="com.ybbbi.safe.service.ScreenLockService" >
         </service>
@@ -118,9 +121,10 @@
         </service>
         <service android:name="com.ybbbi.safe.service.AddressService" >
         </service>
-        <service 
-            android:name="com.ybbbi.safe.service.WidgetService"
-            ></service>
+        <service android:name="com.ybbbi.safe.service.WidgetService" >
+        </service>
+        <service android:name="com.ybbbi.safe.service.ForeService" >
+        </service>
 
         <activity
             android:name="com.ybbbi.safe.Contact_3rd_Activity"
@@ -157,6 +161,10 @@
         <activity
             android:name="com.ybbbi.safe.ProcessedManagerActivity"
             android:label="@string/title_activity_processed_manager" >
+        </activity>
+        <activity
+            android:name="com.ybbbi.safe.APPLockActivity"
+            android:label="@string/title_activity_applock" >
         </activity>
     </application>
 

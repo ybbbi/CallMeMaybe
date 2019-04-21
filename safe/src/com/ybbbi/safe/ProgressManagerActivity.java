@@ -7,7 +7,7 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 import com.ybbbi.safe.bean.Appinfo;
-import com.ybbbi.safe.view.AppManager;
+import com.ybbbi.safe.manager.AppManager;
 import com.ybbbi.safe.view.MyProgressBar;
 
 import android.net.Uri;

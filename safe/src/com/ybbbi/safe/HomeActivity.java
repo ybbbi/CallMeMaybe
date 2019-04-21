@@ -1,5 +1,6 @@
 package com.ybbbi.safe;
 
+import com.ybbbi.safe.service.ForeService;
 import com.ybbbi.safe.utils.MD5utils;
 import com.ybbbi.safe.utils.Sharedpreferences;
 import com.ybbbi.safe.utils.constants;
@@ -45,6 +46,9 @@ public class HomeActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		
+	
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_home);
