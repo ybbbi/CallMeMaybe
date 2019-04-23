@@ -9,9 +9,11 @@ public class Appinfo {
 	public String size;
 	public Boolean system;
 	public Boolean sdcard;
+	public int uid;
 	public Appinfo(String packagename, String label, Drawable icon,
-			String size, Boolean system, Boolean sdcard) {
+			String size, Boolean system, Boolean sdcard,int uid) {
 		super();
+		this.uid=uid;
 		this.packagename = packagename;
 		this.label = label;
 		this.icon = icon;

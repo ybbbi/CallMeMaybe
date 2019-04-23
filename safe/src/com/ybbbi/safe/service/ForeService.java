@@ -24,7 +24,8 @@ public class ForeService extends Service {
 		Intent intent=new Intent(this,SplashActivity.class);
 		notification.contentIntent=PendingIntent.getActivity(this, 53, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		notification.icon=R.drawable.logo2;
-		notification.tickerText="北京第三交通委提醒您:";
+		notification.tickerText="北京第三安全委提醒您:合理使用,谨防偷盗!!!";
+	
 		notification.contentView=new RemoteViews(getPackageName(),R.layout.foreground);
 		startForeground(1, notification);
 	}

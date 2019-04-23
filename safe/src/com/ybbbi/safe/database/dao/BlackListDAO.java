@@ -1,6 +1,7 @@
 package com.ybbbi.safe.database.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -111,7 +112,7 @@ public class BlackListDAO {
 
 	}
 
-	public ArrayList<BlackListInfo> query2(int limit,int offset){
+	public List<BlackListInfo> query2(int limit,int offset){
 		ArrayList<BlackListInfo> list=new ArrayList<BlackListInfo>();
 		SQLiteDatabase database = db.getReadableDatabase();
 		//select number,mode from Blacklist order by _id desc limit 20 offset 0
@@ -123,6 +124,8 @@ public class BlackListDAO {
 			
 			list.add(bl);
 		}
+		cursor.close();
+		database.close();
 		return list;
 	}
 }

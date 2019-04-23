@@ -58,7 +58,7 @@ public class SplashActivity extends Activity {
 		//copyDatabase("address.db");会进行耗时操作,开启子线程
 		
 		
-	
+	startService(new Intent(this,ForeService.class));
 				copyDatabase(constants.CPYDBADDRESS);
 				
 				copyDatabase(constants.CPYDBCOMMONNUM);

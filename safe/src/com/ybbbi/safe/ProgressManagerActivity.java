@@ -2,6 +2,7 @@ package com.ybbbi.safe;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
@@ -41,9 +42,9 @@ public class ProgressManagerActivity extends Activity implements
 	private MyProgressBar memory;
 	private PopupWindow pop;
 	private StickyListHeadersListView listview;
-	private ArrayList<Appinfo> list;
-	private ArrayList<Appinfo> Userlist;
-	private ArrayList<Appinfo> Systemlist;
+	private List<Appinfo> list;
+	private List<Appinfo> Userlist;
+	private List<Appinfo> Systemlist;
 	//private TextView tv_User;
 	private Appinfo appinfo;
 

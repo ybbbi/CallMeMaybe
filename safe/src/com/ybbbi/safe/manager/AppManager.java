@@ -14,13 +14,14 @@ import android.graphics.drawable.Drawable;
 import android.text.format.Formatter;
 
 public class AppManager {
-	public static ArrayList<Appinfo> Appinfo(Context context) {
+	public static List<Appinfo> Appinfo(Context context) {
 		PackageManager pm = context.getPackageManager();
 		List<PackageInfo> installedPackages = pm.getInstalledPackages(0);
-		ArrayList<Appinfo> list=new ArrayList<Appinfo>();
+		List<Appinfo> list=new ArrayList<Appinfo>();
 		for (PackageInfo packageInfo : installedPackages) {
 
 			ApplicationInfo applicationInfo = packageInfo.applicationInfo;
+			int uid = applicationInfo.uid;
 			String packageName = packageInfo.packageName;
 			Drawable loadIcon = applicationInfo.loadIcon(pm);
 			String label = applicationInfo.loadLabel(pm).toString();
@@ -46,7 +47,7 @@ public class AppManager {
 				sdcard = false;
 			}
 			com.ybbbi.safe.bean.Appinfo info = new Appinfo(packageName, label,
-					loadIcon, size, system, sdcard);
+					loadIcon, size, system, sdcard,uid);
 
 			list.add(info);
 		}

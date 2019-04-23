@@ -96,12 +96,16 @@ public class HomeActivity extends Activity {
 					startActivity(intent3);
 					break;
 				case 4:
-
+					Intent intent4=new Intent(HomeActivity.this,DataActivity.class	);
+					startActivity(intent4);
+					
 					break;
 				case 5:
 
 					break;
 				case 6:
+					Intent intent6=new Intent(HomeActivity.this,ClearProcessActivity.class);
+					startActivity(intent6);
 
 					break;
 				case 7:

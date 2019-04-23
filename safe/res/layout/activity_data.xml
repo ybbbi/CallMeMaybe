@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:orientation="vertical" >
+
+
+    <TextView
+        style="@style/APPTitleStyles"
+        android:text="流量统计"
+         />
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#DEDEDE"
+        android:text="(重启重置流量统计)"
+        />
+    <ListView 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lv_data"
+        
+        ></ListView>
+
+</LinearLayout>

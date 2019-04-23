@@ -70,16 +70,18 @@
         android:layout_height="wrap_content"
         android:background="@drawable/selector_setting_sv_middle"
         android:clickable="true"
-        personal:Title="开启电子狗服务1"
+        android:id="@+id/tools_watchdog_sv"
+        personal:Title="开启看门狗"
         personal:cache="true" >
     </com.ybbbi.safe.view.SettingView>
 
     <com.ybbbi.safe.view.SettingView
+        android:id="@+id/tools_accessibility"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_setting_sv_bottom"
         android:clickable="true"
-        personal:Title="开启电子狗服务1"
+        personal:Title="开启Accessibility"
         personal:cache="true" >
     </com.ybbbi.safe.view.SettingView>
 

@@ -1,6 +1,7 @@
 package com.ybbbi.safe;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -31,7 +32,7 @@ public class BlackListActivity extends Activity {
 	protected static final int UPDATEREQUESCODE = 41;
 	protected static final int LIMIT = 30;
 	protected static int OFFSET = 0;
-	private ArrayList<BlackListInfo> querylist;
+	private List<BlackListInfo> querylist;
 	private ImageView image;
 	private ListView listview;
 	private BlackListDAO blacklistdao;

@@ -24,5 +24,10 @@
     <string name="title_activity_progress_manager">ProgressManagerActivity</string>
     <string name="title_activity_processed_manager">ProcessedManagerActivity</string>
     <string name="title_activity_applock">APPLockActivity</string>
+    <string name="title_activity_unlock">UnlockActivity</string>
+    <string name="accessibility_service_label">校园安全助手</string>
+    <string name="accessibility_service_description">感谢使用校园安全助手</string>
+    <string name="title_activity_data">DataActivity</string>
+    <string name="title_activity_clear_process">ClearProcessActivity</string>
 
 </resources>

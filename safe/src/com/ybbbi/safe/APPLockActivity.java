@@ -7,6 +7,7 @@ import com.ybbbi.safe.bean.Appinfo;
 import com.ybbbi.safe.database.dao.ApplockDAO;
 import com.ybbbi.safe.manager.AppManager;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.annotation.SuppressLint;
@@ -41,11 +42,13 @@ public class APPLockActivity extends Activity implements OnClickListener {
 	private myAdapter lockAdapter;
 	private TextView tv_lock;
 	private TextView tv_unlock;
+	private List<Appinfo> appInfo;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_applock);
+		ad=new ApplockDAO(this);
 		init();
 		initdata();
 		
@@ -53,8 +56,54 @@ public class APPLockActivity extends Activity implements OnClickListener {
 
 	}
 
+	private class myAsyncTask extends AsyncTask<Void, Void, Void>{
+
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			appInfo = AppManager
+					.Appinfo(APPLockActivity.this);
+			lockList = new ArrayList<Appinfo>();
+			unlockList = new ArrayList<Appinfo>();
+			for (Appinfo appinfo : appInfo) {
+				if (ad.query(appinfo.packagename)) {
+					// 已添加
+					lockList.add(appinfo);
+				} else {
+					// 未添加
+					unlockList.add(appinfo);
+
+				}
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			unlockAdapter = new myAdapter(false);
+			lockAdapter = new myAdapter(true);
+			lv_unlock.setAdapter(unlockAdapter);
+			lv_lock.setAdapter(lockAdapter);
+			super.onPostExecute(result);
+		}
+
+		@Override
+		protected void onProgressUpdate(Void... values) {
+			// TODO Auto-generated method stub
+			super.onProgressUpdate(values);
+		}
+		
+	}
 	private void initdata() {
-		new Thread() {
+		myAsyncTask a=new myAsyncTask();
+		a.execute();
+		/*new Thread() {
 
 			public void run() {
 				ArrayList<Appinfo> appInfo = AppManager
@@ -83,7 +132,7 @@ public class APPLockActivity extends Activity implements OnClickListener {
 				});
 
 			};
-		}.start();
+		}.start();*/
 	}
 
 	private class myAdapter extends BaseAdapter {

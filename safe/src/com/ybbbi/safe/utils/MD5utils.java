@@ -33,7 +33,7 @@ public class MD5utils {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(string);
+//		System.out.println(string);
 		return string;
 	}
 
