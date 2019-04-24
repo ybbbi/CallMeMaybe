@@ -29,5 +29,6 @@
     <string name="accessibility_service_description">感谢使用校园安全助手</string>
     <string name="title_activity_data">DataActivity</string>
     <string name="title_activity_clear_process">ClearProcessActivity</string>
+    <string name="title_activity_virus">VirusActivity</string>
 
 </resources>

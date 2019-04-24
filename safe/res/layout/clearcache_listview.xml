@@ -5,7 +5,7 @@
     android:padding="5dp" >
 
     <ImageView
-        android:id="@+id/image_icon"
+        android:id="@+id/image_clearicon"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerVertical="true"
@@ -16,11 +16,11 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/image_icon"
+        android:layout_toRightOf="@id/image_clearicon"
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/tv_packagename"
+            android:id="@+id/tv_clear_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="张三"
@@ -31,20 +31,20 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/tv_issdcard"
+                android:id="@+id/tv_clear_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="13888888888"
                 android:textColor="#77000000" />
 
+        </RelativeLayout>
+    </LinearLayout>
             <ImageView
-                android:id="@+id/tv_size"
+                android:id="@+id/imageview_clear_brush"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-           		android:src="@drawable/list_button_clean_default"
+                android:src="@drawable/selector_clearcache"
                 android:textColor="#77000000" />
-        </RelativeLayout>
-    </LinearLayout>
 
 </RelativeLayout>

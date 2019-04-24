@@ -101,7 +101,8 @@ public class HomeActivity extends Activity {
 					
 					break;
 				case 5:
-
+					Intent intent5=new Intent(HomeActivity.this,VirusActivity.class);
+					startActivity(intent5);
 					break;
 				case 6:
 					Intent intent6=new Intent(HomeActivity.this,ClearProcessActivity.class);

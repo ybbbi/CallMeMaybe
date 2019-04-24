@@ -18,10 +18,11 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+                android:id="@+id/clear_relative"
              >
 
             <RelativeLayout
-                android:id="@+id/clear_relative"
+                android:id="@+id/clear_relativecontent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -49,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="5dp"
-                android:layout_toRightOf="@+id/clear_relative"
+                android:layout_toRightOf="@+id/clear_relativecontent"
                 android:orientation="vertical" >
 
                 <ProgressBar
@@ -78,6 +79,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/clear_relative_finish"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="10dp" 
