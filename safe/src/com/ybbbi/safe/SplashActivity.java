@@ -16,6 +16,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -55,6 +56,7 @@ public class SplashActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
 		initView();
+		//create();
 		//copyDatabase("address.db");会进行耗时操作,开启子线程
 		
 		
@@ -310,6 +312,17 @@ public class SplashActivity extends Activity {
 		
 		
 	}
+//	public void create(){
+//		
+//		Intent intent=new Intent();
+//		intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+//		intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "safe");
+//		intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, BitmapFactory.decodeResource(getResources(), R.drawable.logo2));
+//		Intent intent2=new Intent(this,SplashActivity.class);
+//		intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT,intent2);
+//		sendBroadcast(intent);
+//		
+//	}
 	
 	
 }

@@ -56,8 +56,8 @@ public class WatchDogService extends Service {
 		super.onCreate();
 		ServiceRUNNING = true;
 		am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-		AppisLock();
 		ad = new ApplockDAO(this);
+		AppisLock();
 
 		myReceiver = new myReceiver();
 

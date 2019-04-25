@@ -37,7 +37,7 @@
                 android:text="13888888888"
                 android:textColor="#77000000" />
 
-            <ImageView
+            <TextView
                 android:id="@+id/tv_size"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
