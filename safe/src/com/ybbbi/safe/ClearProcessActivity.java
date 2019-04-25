@@ -164,7 +164,7 @@ public class ClearProcessActivity extends Activity implements OnClickListener {
 				list.add(appCacheInfo);
 
 			}
-			listview.smoothScrollToPosition(list.size());
+			listview.smoothScrollToPosition(list.size()-1);
 			adapter.notifyDataSetChanged();
 
 			progressbar.setProgress(process);
@@ -234,7 +234,7 @@ public class ClearProcessActivity extends Activity implements OnClickListener {
 				h.name = (TextView) convertView
 						.findViewById(R.id.tv_clear_name);
 				h.size = (TextView) convertView
-						.findViewById(R.id.tv_clear_size);
+						.findViewById(R.id.tv_clear_safe);
 				convertView.setTag(h);
 			} else {
 				h = (Holder) convertView.getTag();

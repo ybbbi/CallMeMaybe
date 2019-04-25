@@ -5,7 +5,7 @@
     android:padding="5dp" >
 
     <ImageView
-        android:id="@+id/image_clearicon"
+        android:id="@+id/image_virusicon"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerVertical="true"
@@ -16,11 +16,11 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/image_clearicon"
+        android:layout_toRightOf="@id/image_virusicon"
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/tv_clear_name"
+            android:id="@+id/tv_virus_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="张三"
@@ -31,16 +31,16 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/tv_clear_safe"
+                android:id="@+id/tv_virus_safe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="13888888888"
-                android:textColor="#77000000" />
+                android:text="安全"
+                android:textColor="#6600FF00" />
 
         </RelativeLayout>
     </LinearLayout>
             <ImageView
-                android:id="@+id/imageview_clear_brush"
+                android:id="@+id/imageview_virus_brush"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

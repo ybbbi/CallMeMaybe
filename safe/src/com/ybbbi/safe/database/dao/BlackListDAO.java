@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.SystemClock;
 
 import com.ybbbi.safe.bean.BlackListInfo;
 import com.ybbbi.safe.database.BlackListConstants;
@@ -93,13 +94,11 @@ public class BlackListDAO {
 		return mode;
 	}
 
-	public ArrayList<BlackListInfo> query1() {
-		ArrayList<BlackListInfo> list = new ArrayList<BlackListInfo>();
+	public List<BlackListInfo> query1() {
+		
+		List<BlackListInfo> list = new ArrayList<BlackListInfo>();
 		SQLiteDatabase database = db.getReadableDatabase();
-		Cursor cursor = database
-				.query(BlackListConstants.TABLE_NAME, new String[] {
-						BlackListConstants.NUM, BlackListConstants.MODE },
-						null, null, null, null, "_id desc");
+		Cursor cursor = database.query(BlackListConstants.TABLE_NAME, new String[] {BlackListConstants.NUM, BlackListConstants.MODE },null, null, null, null, "_id desc");
 		while (cursor.moveToNext()) {
 			String num = cursor.getString(0);
 			int mode = cursor.getInt(1);
@@ -113,7 +112,8 @@ public class BlackListDAO {
 	}
 
 	public List<BlackListInfo> query2(int limit,int offset){
-		ArrayList<BlackListInfo> list=new ArrayList<BlackListInfo>();
+		
+		List<BlackListInfo> list=new ArrayList<BlackListInfo>();
 		SQLiteDatabase database = db.getReadableDatabase();
 		//select number,mode from Blacklist order by _id desc limit 20 offset 0
 		Cursor cursor = database.rawQuery("select number,mode from Blacklist order by _id desc limit ? offset ? ", new String[]{limit+"",offset+""});

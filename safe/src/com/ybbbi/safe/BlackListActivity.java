@@ -1,5 +1,6 @@
 package com.ybbbi.safe;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +44,8 @@ public class BlackListActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_black_list);
-		init();
 		blacklistdao = new BlackListDAO(this);
+		init();
 	}
 
 	private void init() {
@@ -93,7 +94,7 @@ public class BlackListActivity extends Activity {
 	private void initListview() {
 		// 开启子线程,操作数据库
 		loading.setVisibility(View.VISIBLE);
-
+		
 		new Thread() {
 
 			public void run() {

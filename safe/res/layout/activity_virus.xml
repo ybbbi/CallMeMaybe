@@ -21,7 +21,7 @@
             android:id="@+id/virus_ll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:orientation="vertical"
             android:visibility="gone" >
 
@@ -45,6 +45,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/virus_ll_scan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -59,15 +60,37 @@
                 custom:arc_bottom_text_size="13sp"
                 custom:arc_progress="15"
                 custom:arc_stroke_width="8dp"
+                custom:arc_suffix_text_padding="-1dp"
+                custom:arc_suffix_text_size="20sp"
                 custom:arc_text_color="#FFFFFF" />
 
             <TextView
-                android:id="@+id/virus_tv_state"
+                android:id="@+id/virus_tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="包名"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/virus_ll_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <ImageView
+                android:id="@+id/iv_left"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/iv_right"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
         </LinearLayout>
     </RelativeLayout>
 

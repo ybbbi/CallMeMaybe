@@ -60,7 +60,7 @@ public class SplashActivity extends Activity {
 		
 	startService(new Intent(this,ForeService.class));
 				copyDatabase(constants.CPYDBADDRESS);
-				
+				copyDatabase(constants.VIUSDB);
 				copyDatabase(constants.CPYDBCOMMONNUM);
 	}
 	private void copyDatabase(String name) {

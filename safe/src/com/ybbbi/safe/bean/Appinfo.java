@@ -10,8 +10,10 @@ public class Appinfo {
 	public Boolean system;
 	public Boolean sdcard;
 	public int uid;
+	public String md5;
+	public boolean isVirus;
 	public Appinfo(String packagename, String label, Drawable icon,
-			String size, Boolean system, Boolean sdcard,int uid) {
+			String size, Boolean system, Boolean sdcard,int uid,String md5) {
 		super();
 		this.uid=uid;
 		this.packagename = packagename;
@@ -20,5 +22,7 @@ public class Appinfo {
 		this.size = size;
 		this.system = system;
 		this.sdcard = sdcard;
+		this.md5=md5;
+	
 	}
 }

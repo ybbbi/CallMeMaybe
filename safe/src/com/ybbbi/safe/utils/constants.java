@@ -11,5 +11,6 @@ public interface constants {
 	public static final String CPYDBCOMMONNUM = "commonnum.db";
 	public static final String CPYDBADDRESS = "address.db";
 	public static final String PROCESSSYSTEM = "processsystem";
+	public static final String VIUSDB = "antivirus.db";
 	
 }
