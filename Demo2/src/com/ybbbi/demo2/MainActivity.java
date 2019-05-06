@@ -24,7 +24,7 @@ public class MainActivity extends Activity implements OnClickListener{
 
     private EditText number;
 	private ImageView iv;
-
+	private boolean popupIsopen=false;
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +42,19 @@ public class MainActivity extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.iv:
-			View convertView=createView();
-			popupWindow = new PopupWindow(convertView,number.getWidth()-4,400,true);
-			popupWindow.setOutsideTouchable(true);
-			popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-			
-			popupWindow.showAsDropDown(number,2,-5);
+			if(!popupIsopen){
+				
+				View convertView=createView();
+				popupWindow = new PopupWindow(convertView,number.getWidth()-4,400,true);
+				popupWindow.setOutsideTouchable(true);
+				popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+				popupIsopen = popupWindow.isShowing();
+				
+				
+				popupWindow.showAsDropDown(number,2,-5);
+			}else{
+				popupWindow.dismiss();
+			}
 			break;
 		}
 	}
