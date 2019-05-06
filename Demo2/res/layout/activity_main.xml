@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <EditText
+        android:layout_width="350dp"
+        android:id="@+id/number"
+        android:hint="请输入号码"
+        android:layout_height="wrap_content"
+       />
+    <ImageView 
+        android:src="@drawable/down_arrow"
+        android:id="@+id/iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/number"
+        android:layout_alignBottom="@+id/number"
+        android:layout_alignTop="@+id/number"
+        
+        />
+
+</RelativeLayout>
