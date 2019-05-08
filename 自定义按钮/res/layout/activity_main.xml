@@ -1,0 +1,18 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ybbbi="http://schemas.android.com/apk/res/com.ybbbi.button"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+  >
+
+    <com.ybbbi.button.view.myToggleButton
+        android:id="@+id/myButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_centerInParent="true"
+		ybbbi:background="@drawable/slide_background2"
+		ybbbi:icon="@drawable/slide_icon2"
+		ybbbi:isOn="true"
+        android:text="@string/hello_world" />
+
+</RelativeLayout>
