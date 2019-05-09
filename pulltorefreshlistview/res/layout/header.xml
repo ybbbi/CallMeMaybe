@@ -12,9 +12,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/arrow"
+            android:id="@+id/im"
             android:layout_centerInParent="true"
             />
         <ProgressBar 
+            android:id="@+id/progressbar"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_centerInParent="true"
@@ -35,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="下拉刷新"
+            android:id="@+id/text"
             android:textColor="#FF0000"
             android:layout_gravity="center_horizontal"
             />
