@@ -7,6 +7,8 @@ import com.ybbbi.zhbj.fragment.MenuFragment;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.res.AssetManager;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
@@ -40,11 +42,14 @@ public class HomeActivity extends SlidingFragmentActivity{
 		SlidingMenu slidingMenu = getSlidingMenu();
 		
 		slidingMenu.setMode(SlidingMenu.LEFT);
-		slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
 		setBehindContentView(R.layout.menu);
 		slidingMenu.setBehindWidth(350);
 	}
-	
+	public MenuFragment getFragment(){
+		MenuFragment findFragmentByTag = (MenuFragment) getSupportFragmentManager().findFragmentByTag("menu");
+		return findFragmentByTag;
+	}
 	
 
 }
