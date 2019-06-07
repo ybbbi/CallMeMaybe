@@ -142,5 +142,8 @@ public class HomeFragment extends BaseFragment {
 		}
 		
 	}
+	public NewsCenterpager getNewsPager(){
+		return (NewsCenterpager) mList.get(1);
+	}
 
 }

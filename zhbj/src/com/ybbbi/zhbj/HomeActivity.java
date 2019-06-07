@@ -50,6 +50,9 @@ public class HomeActivity extends SlidingFragmentActivity{
 		MenuFragment findFragmentByTag = (MenuFragment) getSupportFragmentManager().findFragmentByTag("menu");
 		return findFragmentByTag;
 	}
-	
+	public HomeFragment getHomeFragment(){
+		HomeFragment home = (HomeFragment) getSupportFragmentManager().findFragmentByTag("home");
+		return home;
+	}
 
 }

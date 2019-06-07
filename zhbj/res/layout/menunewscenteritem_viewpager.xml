@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:orientation="vertical" >
+    
+	<android.support.v4.view.ViewPager
+	    android:id="@+id/menuNewsCenter_viewpager"
+	    android:layout_width="match_parent"
+	    android:layout_height="220dp"
+	    >
+	    
+	</android.support.v4.view.ViewPager>
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:background="#88000000"
+	    android:layout_alignBottom="@+id/menuNewsCenter_viewpager"
+	    >
+	    <TextView 
+	        android:id="@+id/menuNewsCenter_textview"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="蜗居"
+	        android:textColor="#FFFFFF"
+	        android:textSize="18sp"
+	       android:padding="10dp"
+	        android:layout_weight="1"
+	        />
+	    <com.viewpagerindicator.CirclePageIndicator 
+	        android:layout_gravity="center_vertical"
+	        
+	        android:id="@+id/menuNewsCenter_indicator"
+	        android:layout_height="wrap_content"
+	       android:layout_width="wrap_content"
+	       app:radius="3dp"
+	       app:fillColor="#FF0000"
+	       app:pageColor="#8B8F9C"
+	       app:strokeColor="#FF000000"
+	       app:strokeWidth="0dp"
+	       android:paddingLeft="10dp"
+	       android:paddingRight="10dp"
+	        />
+	</LinearLayout>
+</RelativeLayout>
