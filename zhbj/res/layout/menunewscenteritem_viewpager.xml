@@ -5,13 +5,13 @@
     android:layout_height="220dp"
     android:orientation="vertical" >
     
-	<android.support.v4.view.ViewPager
+	<com.ybbbi.zhbj.ui.RollView
 	    android:id="@+id/menuNewsCenter_viewpager"
 	    android:layout_width="match_parent"
 	    android:layout_height="220dp"
 	    >
 	    
-	</android.support.v4.view.ViewPager>
+	</com.ybbbi.zhbj.ui.RollView>
 	<LinearLayout 
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"

@@ -89,13 +89,11 @@ public class menuNewsCenterPager extends baseMenuPager {
 			@Override
 			public void onPageScrolled(int position, float positionOffset,
 					int positionOffsetPixels) {
-				// TODO Auto-generated method stub
 				
 			}
 			
 			@Override
 			public void onPageScrollStateChanged(int state) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
@@ -103,24 +101,20 @@ public class menuNewsCenterPager extends baseMenuPager {
 	private class myadapter extends PagerAdapter{
 		@Override
 		public CharSequence getPageTitle(int position) {
-			// TODO Auto-generated method stub
 			return info.children.get(position).title;
 		}
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return itempagers.size();
 		}
 
 		@Override
 		public boolean isViewFromObject(View view, Object object) {
-			// TODO Auto-generated method stub
 			return view==object;
 		}
 
 		@Override
 		public Object instantiateItem(ViewGroup container, int position) {
-			// TODO Auto-generated method stub
 			menuNewsCenterItemPager newsCenterItemPager = itempagers.get(position);
 			View view2 = newsCenterItemPager.view;
 			container.addView(view2);
@@ -130,7 +124,6 @@ public class menuNewsCenterPager extends baseMenuPager {
 
 		@Override
 		public void destroyItem(ViewGroup container, int position, Object object) {
-			// TODO Auto-generated method stub
 		container.removeView((View) object);
 		}
 		

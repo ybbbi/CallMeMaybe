@@ -3,6 +3,8 @@ package com.ybbbi.zhbj.bean;
 import java.util.List;
 
 public class NewBean {
+	public String retcode;
+	public NewBeanData data;
 	public class NewBeanData {
 
 		public String countcommenturl;
@@ -14,8 +16,6 @@ public class NewBean {
 
 	}
 
-	public String retcode;
-	public NewBeanData data;
 
 	public class News {
 		public boolean comment;
@@ -27,12 +27,13 @@ public class NewBean {
 		public String title;
 		public String type;
 		public String url;
+		public boolean isRead;
 
 	}
 
 	public class toppic {
 		public String description;
-		public String id;
+		public int id;
 		public String listimage;
 		public String sort;
 		public String title;
@@ -44,7 +45,7 @@ public class NewBean {
 		public boolean comment;
 		public String commentlist;
 		public String commenturl;
-		public String id;
+		public int id;
 		public String pubdate;
 		public String title;
 		public String topimage;

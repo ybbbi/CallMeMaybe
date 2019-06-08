@@ -4,10 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-	<ListView 
-	    android:divider="@android:color/transparent"
+	<com.ybbbi.zhbj.ui.PulltoRefreshListview 
+	    android:divider="@android:color/darker_gray"
+	    android:listSelector="@android:color/transparent"
+	    android:dividerHeight="0.5dp"
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
 	    android:id="@+id/menuNewsCenter_listview"
-	    ></ListView>
+	    ></com.ybbbi.zhbj.ui.PulltoRefreshListview>
 </LinearLayout>
