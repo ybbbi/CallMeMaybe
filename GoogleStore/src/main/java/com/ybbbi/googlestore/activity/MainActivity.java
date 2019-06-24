@@ -85,9 +85,14 @@ public class MainActivity extends AppCompatActivity {
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawLayout, 0, 0);
         actionBarDrawerToggle.syncState();
     }
-
+    /**
+     *设置主页按钮点击弹出drawer
+     *@Time:2019-06-24||10:30
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+
         actionBarDrawerToggle.onOptionsItemSelected(item);
         return super.onOptionsItemSelected(item);
     }

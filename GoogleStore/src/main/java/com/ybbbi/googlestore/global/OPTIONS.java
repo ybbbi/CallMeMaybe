@@ -13,8 +13,8 @@ public class OPTIONS {
             .showImageOnLoading(R.mipmap.ic_default)
                 .showImageForEmptyUri(R.mipmap.ic_empty_page)
                 .showImageOnFail(R.mipmap.ic_default)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
+                .cacheInMemory(false)
+                .cacheOnDisk(false)
                 .considerExifParams(true)
                 .displayer(new FadeInBitmapDisplayer(2000))
             .build();

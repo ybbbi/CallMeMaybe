@@ -44,7 +44,7 @@ public class CacheManager {
     public  void saveCacheData(String url, String json) {
         //文件
         try {
-            File file = new File(CACHE_DIR, URLEncoder.encode(url.substring(url.indexOf("?"))));
+            File file = new File(CACHE_DIR, URLEncoder.encode(url.substring(url.indexOf("0/"))));
             if (!file.exists()) {
 
                 file.createNewFile();
@@ -62,7 +62,8 @@ public class CacheManager {
         StringBuffer sb = new StringBuffer();
 
         try {
-            File file = new File(CACHE_DIR, URLEncoder.encode(url.substring(url.indexOf("?"))));
+            //http://127.0.0.1:8090/app?index=
+            File file = new File(CACHE_DIR, URLEncoder.encode(url.substring(url.indexOf("0/"))));
             if (file.exists()) {
 
                 //再次判断文件是否有效

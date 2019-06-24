@@ -1,101 +1,85 @@
 package com.ybbbi.googlestore.fragment;
 
-import android.support.annotation.NonNull;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.ListView;
 
 import com.google.gson.Gson;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.ybbbi.googlestore.NetURL.NetUrl;
 import com.ybbbi.googlestore.R;
 import com.ybbbi.googlestore.adapter.HomeAdapter;
+import com.ybbbi.googlestore.adapter.HomeVPAdapter;
+import com.ybbbi.googlestore.adapter.MyBaseAdapter;
 import com.ybbbi.googlestore.bean.HomeInfo;
-import com.ybbbi.googlestore.http.HttpHelper;
-import com.ybbbi.googlestore.utils.LogUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * ybbbi
  * 2019-06-19 13:43
  */
-public class MainFragment extends BaseFragment {
+public class MainFragment extends ListViewFragment<HomeInfo.ListBean> {
 
-    private ArrayList<HomeInfo.ListBean> list = new ArrayList<>();
-    private HomeAdapter homeAdapter;
-    private SmartRefreshLayout smartRefreshLayout;
 
-    @Override
-    public View getSuccessView() {
-        View inflateView = View.inflate(getContext(), R.layout.mainfragment, null);
-        ListView mListview = inflateView.findViewById(R.id.mainf_listview);
-        smartRefreshLayout = inflateView.findViewById(R.id.mainf_smartrefresh);
-        homeAdapter = new HomeAdapter(list);
-        mListview.setAdapter(homeAdapter);
-        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                list.clear();
-                homeAdapter.notifyDataSetChanged();
-                loadData();
-                smartRefreshLayout.finishRefresh();
-            }
-        });
-        smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                loadData();
-                smartRefreshLayout.finishLoadMore();
+    private ViewPager home_viewpager_header;
 
-            }
-        });
 
-        return inflateView;
+    //homeAdapter = new HomeAdapter(list);
+    //addHeaderView();
+    // mListview.setAdapter(homeAdapter);
 
-    }
+
     /**
-     *加载数据
-     *@Time:2019-06-23||14:16
+     * 加载数据
+     *
+     * @Time:2019-06-23||14:16
      */
+
+
+    // HttpHelper.create().get(NetUrl.URL_HOME + list.size(), new HttpHelper.OnResultListener() {
     @Override
-    public void loadData() {
+    protected MyBaseAdapter getAdapter() {
 
+        return new HomeAdapter(list);
+    }
 
-        HttpHelper.create().get(NetUrl.URL_HOME+list.size(), new HttpHelper.OnResultListener() {
-            @Override
-            public void onSuccess(String result) {
-                stateLayout.showsuccessView();
-                Gson json = new Gson();
-                HomeInfo homeInfo = json.fromJson(result, HomeInfo.class);
-                if (homeInfo != null) {
+    @Override
+    protected String getURL() {
+        return NetUrl.URL_HOME + list.size();
+    }
 
-                    List<HomeInfo.ListBean> stringList = homeInfo.list;
-                    list.addAll(stringList);
+    @Override
+    protected void parseData(String result) {
+        Gson json = new Gson();
+        HomeInfo homeInfo = json.fromJson(result, HomeInfo.class);
+        if (homeInfo != null) {
+            if (homeInfo.picture != null && homeInfo.picture.size() > 0) {
 
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
+                home_viewpager_header.setAdapter(new HomeVPAdapter(homeInfo.picture));
+            }
 
-                            homeAdapter.notifyDataSetChanged();
+            List<HomeInfo.ListBean> stringList = homeInfo.list;
+            list.addAll(stringList);
 
-                        }
-                    });
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    baseAdapter.notifyDataSetChanged();
 
                 }
+            });
 
-            }
-
-            @Override
-            public void onFail(Exception e) {
-                LogUtil.e("失败");
-
-            }
-        }, getActivity());
+        }
     }
 
-
+    @Override
+    protected void addHeader() {
+        View view = View.inflate(getActivity(), R.layout.home_listview_header, null);
+        home_viewpager_header = view.findViewById(R.id.listview_header_viewpager);
+        mListview.addHeaderView(view);
+        super.addHeader();
+    }
 }
+
+
+

@@ -17,4 +17,8 @@ public interface NetUrl {
      *主页地址
      */
     String URL_HOME=URL_HOST+"home?index=";
+    String URL_APP=URL_HOST+"app?index=";
+    String URL_GAME=URL_HOST+"game?index=";
+    String URL_SUBJECT=URL_HOST+"subject?index=";
+    String URL_RECOMMEND=URL_HOST+"recommend?index=0";
 }

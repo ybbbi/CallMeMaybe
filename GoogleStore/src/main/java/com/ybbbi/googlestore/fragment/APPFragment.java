@@ -1,33 +1,40 @@
 package com.ybbbi.googlestore.fragment;
 
-import android.os.Handler;
-import android.os.Message;
-import android.view.View;
-import android.widget.TextView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.ybbbi.googlestore.NetURL.NetUrl;
+import com.ybbbi.googlestore.adapter.HomeAdapter;
+import com.ybbbi.googlestore.adapter.MyBaseAdapter;
+import com.ybbbi.googlestore.bean.HomeInfo;
 
-/*
- *ybbbi
- *2019-06-19 13:43
- */public class APPFragment extends BaseFragment {
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * ybbbi
+ * 2019-06-19 13:43
+ */
+public class APPFragment extends ListViewFragment<HomeInfo.ListBean> {
 
 
     @Override
-    public View getSuccessView() {
-        TextView tv=new TextView(getActivity());
-        tv.setText(this.getClass().getSimpleName());
-        tv.setTextSize(20);
-        return tv;
+    protected MyBaseAdapter getAdapter() {
+        return new HomeAdapter(list);
     }
 
     @Override
-    public void loadData() {
-        new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                stateLayout.showerrorView();
-            }
-        }.sendEmptyMessageDelayed(0,3000);
+    protected String getURL() {
+        return NetUrl.URL_APP + list.size();
+    }
+
+    @Override
+    protected void parseData(String result) {
+        Gson json = new Gson();
+        ArrayList<HomeInfo.ListBean> homeInfo = json.fromJson(result, new TypeToken<List<HomeInfo.ListBean>>() {
+        }.getType());
+        if (homeInfo != null) {
+            list.addAll(homeInfo);
+            baseAdapter.notifyDataSetChanged();
+        }
     }
 }
