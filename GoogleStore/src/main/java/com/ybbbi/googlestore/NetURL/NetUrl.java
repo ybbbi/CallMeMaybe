@@ -21,4 +21,7 @@ public interface NetUrl {
     String URL_GAME=URL_HOST+"game?index=";
     String URL_SUBJECT=URL_HOST+"subject?index=";
     String URL_RECOMMEND=URL_HOST+"recommend?index=0";
+    String URL_CATEGORY=URL_HOST+"category?index=0";
+    String URL_HOT=URL_HOST+"hot?index=0";
+    String DETAIL =URL_HOST+"detail?packageName=" ;
 }

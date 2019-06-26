@@ -43,7 +43,7 @@ public abstract class MyBaseAdapter<R> extends BaseAdapter {
         Object holder;
         if (convertView == null) {
             convertView = convertView.inflate(parent.getContext(), bindLayout(position), null);
-            holder = createHolder(convertView);
+            holder = createHolder(convertView,position);
 
 
             convertView.setTag(holder);
@@ -90,6 +90,6 @@ public abstract class MyBaseAdapter<R> extends BaseAdapter {
      *
      * @Time:2019-06-22||22:43
      */
-    public abstract Object createHolder(View convertView);
+    public abstract Object createHolder(View convertView,int position);
 
 }

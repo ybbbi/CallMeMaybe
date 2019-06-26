@@ -1,11 +1,16 @@
 package com.ybbbi.googlestore.fragment;
 
+import android.content.Intent;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.AdapterView;
 
 import com.google.gson.Gson;
 import com.ybbbi.googlestore.NetURL.NetUrl;
 import com.ybbbi.googlestore.R;
+import com.ybbbi.googlestore.activity.DetailActivity;
 import com.ybbbi.googlestore.adapter.HomeAdapter;
 import com.ybbbi.googlestore.adapter.HomeVPAdapter;
 import com.ybbbi.googlestore.adapter.MyBaseAdapter;
@@ -28,6 +33,15 @@ public class MainFragment extends ListViewFragment<HomeInfo.ListBean> {
     // mListview.setAdapter(homeAdapter);
 
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        super.onItemClick(parent, view, position, id);
+        Intent intent = new Intent(getContext(), DetailActivity.class);
+
+        intent.putExtra("packageName",list.get(position-1).packageName);
+        startActivity(intent);
+    }
+
     /**
      * 加载数据
      *
@@ -38,6 +52,7 @@ public class MainFragment extends ListViewFragment<HomeInfo.ListBean> {
     // HttpHelper.create().get(NetUrl.URL_HOME + list.size(), new HttpHelper.OnResultListener() {
     @Override
     protected MyBaseAdapter getAdapter() {
+
 
         return new HomeAdapter(list);
     }

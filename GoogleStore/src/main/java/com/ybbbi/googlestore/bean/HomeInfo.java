@@ -49,6 +49,9 @@ public class HomeInfo {
         public String downloadUrl;
         public String des;
 
+
+
+
        /* public int getId() {
             return id;
         }

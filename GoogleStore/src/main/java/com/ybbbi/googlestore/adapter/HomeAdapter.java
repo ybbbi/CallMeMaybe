@@ -42,6 +42,7 @@ public class HomeAdapter extends MyBaseAdapter<HomeInfo.ListBean> {
         viewHolder.listviewHomeTvsize.setText(Formatter.formatFileSize(MyApp.context, info.size));
         viewHolder.ratingbar.setRating(info.stars);
         viewHolder.ratingbar.setIsIndicator(true);
+
     }
 
     @Override
@@ -50,7 +51,7 @@ public class HomeAdapter extends MyBaseAdapter<HomeInfo.ListBean> {
     }
 
     @Override
-    public Object createHolder(View convertView) {
+    public Object createHolder(View convertView,int position) {
         return new ViewHolder(convertView);
     }
   /*  @Override

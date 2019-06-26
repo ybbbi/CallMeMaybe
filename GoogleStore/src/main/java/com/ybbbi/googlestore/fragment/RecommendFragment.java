@@ -13,6 +13,7 @@ import com.ybbbi.googlestore.NetURL.NetUrl;
 import com.ybbbi.googlestore.R;
 import com.ybbbi.googlestore.global.MyApp;
 import com.ybbbi.googlestore.http.HttpHelper;
+import com.ybbbi.googlestore.utils.ColorUtil;
 import com.ybbbi.googlestore.utils.DimenUtil;
 import com.ybbbi.googlestore.utils.ToastUtil;
 
@@ -78,7 +79,7 @@ import java.util.Random;
                         tv.setText(list.get(i*getCount(i)+i1));
                         Random random = new Random();
                         tv.setTextSize(random.nextInt(10)+12);
-                        tv.setTextColor(Color.rgb(random.nextInt(200),random.nextInt(200),random.nextInt(200)));
+                        tv.setTextColor(ColorUtil.randomColor());
                         tv.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {

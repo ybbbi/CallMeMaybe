@@ -44,7 +44,7 @@ public class SubjectAdapter extends MyBaseAdapter<SubjectBean> {
     }
 
     @Override
-    public Object createHolder(View convertView) {
+    public Object createHolder(View convertView,int position) {
         return new SubHolder(convertView);
     }
 

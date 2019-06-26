@@ -2,6 +2,7 @@ package com.ybbbi.googlestore.fragment;
 
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -15,11 +16,13 @@ import com.ybbbi.googlestore.utils.ToastUtil;
 
 import java.util.ArrayList;
 
+import butterknife.OnItemClick;
+
 /**
  * ybbbi
  * 2019-06-24 14:24
  */
-public abstract class ListViewFragment<X> extends BaseFragment {
+public abstract class ListViewFragment<X> extends BaseFragment implements AdapterView.OnItemClickListener {
     protected ListView mListview;
     protected SmartRefreshLayout smartRefreshLayout;
     protected ArrayList<X> list = new ArrayList<>();
@@ -50,10 +53,16 @@ public abstract class ListViewFragment<X> extends BaseFragment {
         baseAdapter = getAdapter();
         addHeader();
         mListview.setAdapter(baseAdapter);
+        mListview.setOnItemClickListener(this);
         return inflateView;
     }
 
     protected void addHeader() {
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
 
