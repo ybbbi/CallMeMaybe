@@ -9,5 +9,10 @@
    <!--     <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>-->
     </style>
+    <style name="Fullscreen" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
+
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
 
 </resources>

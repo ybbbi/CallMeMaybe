@@ -17,7 +17,7 @@ public class AppInfo {
     public String name;
     public String packageName;
     public long size;
-    public long stars;
+    public float stars;
     public String des;
     public ArrayList<String> screen;
     public ArrayList<safeInfo> safe;

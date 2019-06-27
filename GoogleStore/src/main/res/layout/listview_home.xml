@@ -1,80 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="9dp"
-        android:layout_marginRight="9dp"
         android:layout_marginTop="5dp"
+        android:layout_marginRight="9dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/listview_home_selector">
+        android:background="@drawable/listview_home_selector"
+        android:orientation="vertical">
+
         <LinearLayout
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
             <ImageView
-              android:layout_margin="10dp"
+                android:id="@+id/listview_home_iv"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@mipmap/ic_default"
-                android:id="@+id/listview_home_iv"
-                />
+                android:layout_margin="10dp"
+                android:src="@mipmap/ic_default" />
+
             <LinearLayout
 
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="60dp">
+                android:layout_height="60dp"
+                android:orientation="vertical">
+
                 <TextView
 
+                    android:id="@+id/listview_home_tvTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:textSize="16sp"
+                    android:text="hhahahahah"
                     android:textColor="@color/txt_title"
-                    android:id="@+id/listview_home_tvTitle"
-                    android:text="hhahahahah"/>
+                    android:textSize="16sp" />
+
                 <RatingBar
 
-                    android:layout_marginTop="3dp"
                     android:id="@+id/ratingbar"
-                    android:rating="3"
-                    android:progressDrawable="@drawable/ratingbar_drawable"
                     android:layout_width="wrap_content"
-                    android:layout_height="14dp" />
+                    android:layout_height="14dp"
+                    android:layout_marginTop="3dp"
+                    android:progressDrawable="@drawable/ratingbar_drawable"
+                    android:rating="3" />
 
                 <TextView
 
+                    android:id="@+id/listview_home_tvsize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:textSize="14sp"
+                    android:text="3.8MB"
                     android:textColor="@color/txt_small"
-                    android:id="@+id/listview_home_tvsize"
-                    android:text="3.8MB"/>
+                    android:textSize="14sp" />
 
             </LinearLayout>
         </LinearLayout>
+
         <View
 
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#33000000"/>
+            android:background="#33000000" />
+
         <TextView
-            android:gravity="center_vertical"
+            android:id="@+id/listview_home_tvinfo"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:paddingTop="5dp"
+            android:gravity="center_vertical"
             android:paddingLeft="5dp"
+            android:paddingTop="5dp"
             android:paddingBottom="7dp"
-            android:textSize="12sp"
+            android:singleLine="true"
+            android:text="好用到不得了"
             android:textColor="@color/txt_small"
-            android:id="@+id/listview_home_tvinfo"
-            android:text="好用到不得了"/>
+            android:textSize="12sp" />
     </LinearLayout>
 </LinearLayout>

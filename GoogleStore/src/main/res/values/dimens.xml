@@ -5,4 +5,5 @@
     <dimen name="listview_header_height">130dp</dimen>
     <dimen name="subject_listview">160dp</dimen>
     <dimen name="dp15">15dp</dimen>
+    <dimen name="dp12">12dp</dimen>
 </resources>

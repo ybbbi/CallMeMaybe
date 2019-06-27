@@ -1,30 +1,22 @@
 package com.ybbbi.googlestore.activity;
 
-import android.icu.util.Measure;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.format.Formatter;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.OvershootInterpolator;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.NumberPicker;
-import android.widget.RatingBar;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.ybbbi.googlestore.NetURL.NetUrl;
 import com.ybbbi.googlestore.R;
 import com.ybbbi.googlestore.bean.AppInfo;
-import com.ybbbi.googlestore.global.OPTIONS;
 import com.ybbbi.googlestore.http.HttpHelper;
+import com.ybbbi.googlestore.moudle.DesMoudle;
+import com.ybbbi.googlestore.moudle.DetailMoudle;
+import com.ybbbi.googlestore.moudle.ScreenMoudle;
+import com.ybbbi.googlestore.moudle.TagMoudle;
 import com.ybbbi.googlestore.view.StateLayout;
 
 import butterknife.BindView;
@@ -36,34 +28,34 @@ import butterknife.ButterKnife;
  */
 public class DetailActivity extends AppCompatActivity {
 
-    @BindView(R.id.listview_home_iv)
-    ImageView listviewHomeIv;
-    @BindView(R.id.listview_home_tvTitle)
-    TextView listviewHomeTvTitle;
-    @BindView(R.id.ratingbar)
-    RatingBar ratingbar;
-    @BindView(R.id.detailinfo_tv_download)
-    TextView detailinfoTvDownload;
-    @BindView(R.id.detailinfo_tv_version)
-    TextView detailinfoTvVersion;
-    @BindView(R.id.detailinfo_tv_date)
-    TextView detailinfoTvDate;
-    @BindView(R.id.detailinfo_tv_size)
-    TextView detailinfoTvSize;
-    @BindView(R.id.llinfo)
-    LinearLayout llinfo;
+
+    @BindView(R.id.ll_content)
+    LinearLayout llContent;
     private StateLayout stateLayout;
+    private DetailMoudle detailMoudle;
+    private ScreenMoudle screenMoudle;
+    private TagMoudle tagMoudle;
+    private DesMoudle desMoudle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         String packageName = getIntent().getStringExtra("packageName");
         stateLayout = new StateLayout(this);
+
         setacionbar();
         setContentView(stateLayout);
+        detailMoudle = new DetailMoudle();
+        tagMoudle = new TagMoudle();
+        screenMoudle=new ScreenMoudle();
+        desMoudle = new DesMoudle();
+        screenMoudle.setActivity(this);
         stateLayout.bindSuccessView(getsuccessView());
         stateLayout.showloadingView();
+
         loadData(packageName);
+
     }
 
     private void setacionbar() {
@@ -88,7 +80,10 @@ public class DetailActivity extends AppCompatActivity {
     private View getsuccessView() {
         View view = View.inflate(this, R.layout.detail, null);
         ButterKnife.bind(this, view);
-
+        llContent.addView(detailMoudle.getView());
+        llContent.addView(tagMoudle.getView());
+        llContent.addView(screenMoudle.getView());
+        llContent.addView(desMoudle.getView());
         return view;
     }
 
@@ -96,30 +91,19 @@ public class DetailActivity extends AppCompatActivity {
      * 加载数据
      */
     private void loadData(String packName) {
+
         HttpHelper.create().get(NetUrl.DETAIL + packName, new HttpHelper.OnResultListener() {
             @Override
             public void onSuccess(String result) {
+                stateLayout.showsuccessView();
                 Gson json = new Gson();
-
-
                 AppInfo info = json.fromJson(result, AppInfo.class);
                 if (info != null) {
-                    ImageLoader.getInstance().displayImage(NetUrl.URL_IMAGE_PREFIX + info.iconUrl, listviewHomeIv, OPTIONS.options);
-                    listviewHomeTvTitle.setText(info.name);
-                    detailinfoTvSize.setText("大小:" + Formatter.formatFileSize(DetailActivity.this, info.size));
-                    ratingbar.setRating(info.stars);
-                    detailinfoTvDownload.setText("下载：" + info.downloadNum);
-                    detailinfoTvDate.setText("日期：" + info.date);
-                    detailinfoTvVersion.setText("版本：" + info.version);
-                    llinfo.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                        @Override
-                        public void onGlobalLayout() {
-                            llinfo.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                            llinfo.setTranslationY(-llinfo.getHeight());
+                    detailMoudle.loadData(info);
+                    tagMoudle.loadData(info);
+                    screenMoudle.loadData(info);
+                    desMoudle.loadData(info);
 
-                            ViewCompat.animate(llinfo).translationY(0).setDuration(800).setStartDelay(200).setInterpolator(new BounceInterpolator()).start();
-                        }
-                    });
                 }
 
             }
@@ -129,7 +113,6 @@ public class DetailActivity extends AppCompatActivity {
 
             }
         }, this);
-        stateLayout.showsuccessView();
     }
 
 
